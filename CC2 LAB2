@@ -1,0 +1,24 @@
+public class Main {
+	public static void main(String[] args) {
+		//Given Values
+		//The length of the garden is 7 meters. The width of the garden is 5 meters.
+		int Length = 7;
+		int Width = 5;
+		System.out.print("Length = ");
+		System.out.println(Length + "m");
+		System.out.print("Width = ");
+		System.out.println(Width + "m");
+		//Calculations
+		//The area of the garden is calculated as Area = Length * Width
+		int Area;
+		Area = Length * Width;
+		System.out.print("Area = ");
+		System.out.println(Area + "m^2");
+		//The perimeter of the garden is calculated as Perimeter = 2 * (Length + Width)
+		int Perimeter;
+		Perimeter = 2 * (Length + Width);
+		System.out.print("Perimeter = ");
+		System.out.println(Perimeter + "m");
+		//Therefore: Length = 7m; Width = 5m; Area = 35m^2; Perimeter = 24m
+	}
+}
