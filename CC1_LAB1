@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Welcome to Decimal to Binary Calculator!");
+//Decimal numbers to binary numbers converter program
+    while (true) {
+      System.out.print("\nEnter a decimal number (or type 'STOP' to end): ");
+      String userInput = scanner.nextLine();
+
+      if (userInput.equalsIgnoreCase("STOP")) {
+        System.out.println("\nProgram Terminated.");
+        break;
+      }
+
+      try {
+        int decimalNumber = Integer.parseInt(userInput);
+        String binaryString = Integer.toBinaryString(decimalNumber);
+        System.out.println("Binary Representation: " + binaryString);
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid input. Please enter a valid integer.");
+      }
+    }
+
+    scanner.close();
+  }
+}
