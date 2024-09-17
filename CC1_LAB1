@@ -29,9 +29,10 @@ public class Main {
 
 //REVISED CODE FOR CC1 2.1 LABORATORY ACTIVITY
 import java.util.Scanner;
-
+//Created on September 17, 2005
 public class Converter2 {
   public static void main(String[] args) {
+    System.out.println("Welcome to Decimal to Binary Calculator!");
     try (Scanner scanner = new Scanner(System.in)){
     System.out.println("Enter a decimal number: ");
     int decimal = scanner.nextInt();
