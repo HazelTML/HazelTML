@@ -26,3 +26,18 @@ public class Main {
     scanner.close();
   }
 }
+
+//REVISED CODE FOR CC1 2.1 LABORATORY ACTIVITY
+import java.util.Scanner;
+
+public class Converter2 {
+  public static void main(String[] args) {
+    try (Scanner scanner = new Scanner(System.in)){
+    System.out.println("Enter a decimal number: ");
+    int decimal = scanner.nextInt();
+    
+    String binary = Integer.toBinaryString(decimal);
+    System.out.println("Binary Representation: " + binary);
+    }
+  }
+}
