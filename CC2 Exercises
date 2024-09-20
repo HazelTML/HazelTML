@@ -5,16 +5,22 @@ import java.util.Scanner;
 public class BasicCalculator {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    System.out.println("Enter First number: "); 
+    System.out.print("Enter First number: "); 
     int fNum = sc.nextInt();
-    System.out.println("Enter Second number: ");
+    System.out.print("Enter Second number: ");
     int sNum = sc.nextInt();
     
     //Arithmetic Method
-    System.out.println("The sum is: " + fNum + sNum);
-    System.out.println("The difference is: " + (fNum - sNum));
-    System.out.println("The product is: " + fNum * sNum);
-    System.out.println("The quotient is: " + fNum / sNum);
-    System.out.println("The radiant is: " + fNum % sNum);
+    int sum = fNum + sNum;
+    int diff = fNum - sNum;
+    int pro = fNum * sNum;
+    int quo = fNum / sNum;
+    int rad = fNum % sNum;
+    
+    System.out.println("\nThe sum is: " + sum);
+    System.out.println("The difference is: " + diff);
+    System.out.println("The product is: " + pro);
+    System.out.println("The quotient is: " + quo);
+    System.out.println("The radiant is: " + rad);
   }
 }
