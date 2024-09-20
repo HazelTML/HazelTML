@@ -1,0 +1,20 @@
+/*Author: Salvador, Hazel Angela M.
+Date created: September 20, 2024
+*/
+import java.util.Scanner;
+public class BasicCalculator {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter First number: "); 
+    int fNum = sc.nextInt();
+    System.out.println("Enter Second number: ");
+    int sNum = sc.nextInt();
+    
+    //Arithmetic Method
+    System.out.println("The sum is: " + fNum + sNum);
+    System.out.println("The difference is: " + (fNum - sNum));
+    System.out.println("The product is: " + fNum * sNum);
+    System.out.println("The quotient is: " + fNum / sNum);
+    System.out.println("The radiant is: " + fNum % sNum);
+  }
+}
