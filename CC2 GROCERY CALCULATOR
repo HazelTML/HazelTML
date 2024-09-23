@@ -1,0 +1,47 @@
+/*Salvador, Hazel Angela M.
+Date created: September 23, 2024*/
+import java.util.Scanner;
+public class ShoppingCalculator {
+  public static void main (String args[]) {
+    Scanner sc = new Scanner(System.in);
+    
+    //Input
+    System.out.print("Enter First Item's Price:     ");
+    int Fprice = sc.nextInt();
+    System.out.print("Enter First Item's Quantity:  ");
+    int Fquant = sc.nextInt();
+    System.out.print("Enter Second Item's Price:    ");
+    int Sprice = sc.nextInt();
+    System.out.print("Enter Second Item's Quantity: ");
+    int Squant = sc.nextInt();
+    System.out.print("Enter Third Item's Price:     ");
+    int Tprice = sc.nextInt();
+    System.out.print("Enter Third Item's Quantity:  ");
+    int Tquant = sc.nextInt();
+    
+    //Calculations
+    //Subtotal
+    double fsubtotal = Fprice * Fquant;
+    double ssubtotal = Sprice * Squant;
+    double tsubtotal = Tprice * Tquant; 
+    double subtotal = fsubtotal + ssubtotal + tsubtotal; 
+    //Discount
+    double discount = (5 * subtotal) / 100; 
+    //Sales Tax
+    double subdis = subtotal - discount;
+    double tax = (12 * subdis) / 100;
+    //Final Total
+    double total = subdis + tax;
+    
+    //Output
+    System.out.println("==============================");
+    System.out.println("First Item's Total:  " + fsubtotal);
+    System.out.println("Second Item's Total: " + ssubtotal);
+    System.out.println("Third Item's Total:  " + tsubtotal);
+    System.out.println("==============================");
+    System.out.println("Subtotal:        PHP " + subtotal);
+    System.out.println("Discount (5%):   PHP " + discount);
+    System.out.println("Sales Tax (12%): PHP " + tax);
+    System.out.println("Final Total:     PHP " + total);
+   }
+ }
