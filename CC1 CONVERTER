@@ -1,5 +1,65 @@
-//REDO METHODS, ADD COMMENTS AND DOCUMENTATIONS
-//CHECK CANVAS INSTRUCTIONS, ADD NEW TEXTS
+//FINAL CONVERTER SEPT. 25, 2024
+
+import java.util.Scanner;
+
+public class Converter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to Radix Converter!");
+
+        //User input of integers
+        while (true) {
+            System.out.print("\nEnter an integer (2-16) or 'STOP' to exit: ");
+            String userInput = scanner.nextLine().trim();
+
+            if (userInput.equalsIgnoreCase("STOP")) {
+                System.out.println("\nProgram Terminated.");
+                break;
+            }
+
+            int ogBase;
+            try {
+                ogBase = Integer.parseInt(userInput);
+                if (ogBase < 2 || ogBase > 16) {
+                    System.out.println("Please enter a valid base (2-16).");
+                    continue;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid base (2-16).");
+                continue;
+            }
+
+            System.out.print("Enter the number in base " + ogBase + ": ");
+            String number = scanner.nextLine().trim();
+
+            // Convert input number from specified base to decimal
+            int decimalNumber;
+            try {
+                decimalNumber = Integer.parseInt(number, ogBase);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number for the specified base.");
+                continue;
+            }
+
+            // Convert decimal to all bases from 2 to 16
+            System.out.println("\nConversions for " + number + " in base " + ogBase + ":");
+            for (int base = 2; base <= 16; base++) {
+                StringBuilder result = new StringBuilder();
+                int temp = decimalNumber;
+
+                while (temp > 0) {
+                    int digit = temp % base;
+                    result.insert(0, (digit < 10) ? digit : (char) ('a' + (digit - 10)));
+                    temp /= base;
+                }
+
+                System.out.println("Base " + base + ": " + (result.length() > 0 ? result.toString() : "0"));
+            }
+        }
+
+        scanner.close();
+    }
+}
 
 import java.util.Scanner;
 public class Converter {
@@ -39,3 +99,4 @@ public class Converter {
         }
     }
 }
+
