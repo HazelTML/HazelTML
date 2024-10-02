@@ -45,3 +45,56 @@ public class ShoppingCalculator {
     System.out.println("Final Total     :PHP " + total);
    }
  }
+
+
+/*Salvador, Hazel Angela M.
+Date created: September 23, 2024*/
+import java.util.Scanner;
+public class ShoppingCalculator {
+
+  public static void main (String args[]) {
+    Scanner sc = new Scanner(System.in);
+    
+    //Input
+    System.out.print("Enter First Item's Price     :");
+    int fprice = sc.nextInt();
+    System.out.print("Enter First Item's Quantity  :");
+    int fquant = sc.nextInt();
+    System.out.print("Enter Second Item's Price    :");
+    int sprice = sc.nextInt();
+    System.out.print("Enter Second Item's Quantity :");
+    int squant = sc.nextInt();
+    System.out.print("Enter Third Item's Price     :");
+    int tprice = sc.nextInt();
+    System.out.print("Enter Third Item's Quantity  :");
+    int tquant = sc.nextInt();
+    
+    //Calculations
+    //Subtotal
+    double fsubtotal = fprice * fquant;
+    double ssubtotal = sprice * squant;
+    double tsubtotal = tprice * tquant; 
+    double subtotal = fsubtotal + ssubtotal + tsubtotal;
+  
+    //Discount
+    double disc = 0.5;
+    double discount = (disc * subtotal); 
+    //Sales Tax
+    double subdis = subtotal - discount;
+    double txs = 0.12;
+    double tax = (txs * subdis);
+    //Final Total
+    double total = subdis + tax;
+    
+    //Output
+    System.out.println("==================================");
+    System.out.printf("First Item's Total  :%.2f%n", fsubtotal);
+    System.out.printf("Second Item's Total :%.2f%n", subtotal);
+    System.out.printf("Third Item's Total  :%.2f%n", tsubtotal);
+    System.out.println("==================================");
+    System.out.printf("Subtotal        : PHP %.2f%n", subtotal);
+    System.out.printf("Discount (5%)   : PHP %.2f%n", discount);
+    System.out.printf("Sales Tax (12%) : PHP %.2f%n", tax);
+    System.out.printf("Final Total     : PHP %.2f%n", total);
+   }
+ }
