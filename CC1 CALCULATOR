@@ -1,19 +1,15 @@
-REVISE THIS JAVA SCRIPT WITH THE FOLLOWING:
-MUST BE IN 4 BITS IN NIBBLES
-ADD CONVERTER FOR HEXADECIMAL AND OCTAL
-AVAILABLE FOR LETTERS
-CAN CONVERT A MIXTURE OF NUMBERS AND LETTERS AT ONCE
-
-//REVISED FINAL CALCULATOR
+//REVISED FINAL CALCULATOR -- OCT. 3, 2024
+//ARRANGE THE OUTPUTS
 import java.util.Scanner;
+
 public class Calculator {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to the Converter!");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to the Character Calculator!");
 
         while (true) {
             System.out.print("\nEnter a decimal number, letters (A-Z), or a mixture (or type 'STOP' to end): ");
-            String userInput = scanner.nextLine();
+            String userInput = sc.nextLine();
 
             if (userInput.equalsIgnoreCase("STOP")) {
                 System.out.println("\nProgram Terminated.");
@@ -33,7 +29,7 @@ public class Calculator {
             }
 
             if (cumulativeDecimalValue > 0) {
-                System.out.println("\nCumulative Decimal Representation: " + cumulativeDecimalValue);
+                System.out.println("\nDecimal Representation: " + cumulativeDecimalValue);
                 
                 // Binary representation padded to multiples of 4 bits
                 String binaryString = Integer.toBinaryString(cumulativeDecimalValue);
@@ -41,7 +37,7 @@ public class Calculator {
                 String paddedBinary = String.format("%" + paddedLength + "s", binaryString).replace(' ', '0');
                 
                 // Format in nibbles
-                System.out.println("Binary Representation (nibbles): " + formatInNibbles(paddedBinary));
+                System.out.println("Binary Representation: " + formatInNibbles(paddedBinary));
 
                 // Octal representation
                 System.out.println("Octal Representation: " + Integer.toOctalString(cumulativeDecimalValue));
@@ -50,8 +46,7 @@ public class Calculator {
                 System.out.println("Hexadecimal Representation: " + Integer.toHexString(cumulativeDecimalValue).toUpperCase());
             }
         }
-
-        scanner.close();
+        sc.close();
     }
 
     private static String formatInNibbles(String binary) {
