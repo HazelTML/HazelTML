@@ -1,9 +1,72 @@
-MUST BE IN 4 BITS
+REVISE THIS JAVA SCRIPT WITH THE FOLLOWING:
+MUST BE IN 4 BITS IN NIBBLES
 ADD CONVERTER FOR HEXADECIMAL AND OCTAL
-AVAILABLE FOR STRING
-BE FLEXIBLE: BASE TO BASE
+AVAILABLE FOR LETTERS
+CAN CONVERT A MIXTURE OF NUMBERS AND LETTERS AT ONCE
 
-//FINAL CODE SEPT. 25, 2024
+//REVISED FINAL CALCULATOR
+import java.util.Scanner;
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to the Converter!");
+
+        while (true) {
+            System.out.print("\nEnter a decimal number, letters (A-Z), or a mixture (or type 'STOP' to end): ");
+            String userInput = scanner.nextLine();
+
+            if (userInput.equalsIgnoreCase("STOP")) {
+                System.out.println("\nProgram Terminated.");
+                break;
+            }
+
+            int cumulativeDecimalValue = 0;
+
+            for (char ch : userInput.toCharArray()) {
+                if (Character.isLetter(ch)) {
+                    cumulativeDecimalValue += Character.toUpperCase(ch) - 'A' + 1;
+                } else if (Character.isDigit(ch)) {
+                    cumulativeDecimalValue += Character.getNumericValue(ch);
+                } else {
+                    System.out.println("Invalid character: " + ch);
+                }
+            }
+
+            if (cumulativeDecimalValue > 0) {
+                System.out.println("\nCumulative Decimal Representation: " + cumulativeDecimalValue);
+                
+                // Binary representation padded to multiples of 4 bits
+                String binaryString = Integer.toBinaryString(cumulativeDecimalValue);
+                int paddedLength = (binaryString.length() + 3) / 4 * 4; // Round up to the nearest multiple of 4
+                String paddedBinary = String.format("%" + paddedLength + "s", binaryString).replace(' ', '0');
+                
+                // Format in nibbles
+                System.out.println("Binary Representation (nibbles): " + formatInNibbles(paddedBinary));
+
+                // Octal representation
+                System.out.println("Octal Representation: " + Integer.toOctalString(cumulativeDecimalValue));
+
+                // Hexadecimal representation
+                System.out.println("Hexadecimal Representation: " + Integer.toHexString(cumulativeDecimalValue).toUpperCase());
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static String formatInNibbles(String binary) {
+        StringBuilder nibbleString = new StringBuilder();
+        for (int i = 0; i < binary.length(); i++) {
+            if (i > 0 && i % 4 == 0) {
+                nibbleString.append(" "); // Add space every 4 bits
+            }
+            nibbleString.append(binary.charAt(i));
+        }
+        return nibbleString.toString();
+    }
+}
+
+//BASIC CALCULATOR
 import java.util.Scanner;
 
 public class Calculator {
