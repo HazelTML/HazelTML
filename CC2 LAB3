@@ -98,3 +98,18 @@ public class ShoppingCalculator {
     System.out.printf("Final Total     : PHP %.2f%n", total);
    }
 }
+
+//ALTERNATE SET
+subtotal = (fItem*quantity1) + (sItem*quantity2) + (tItrm*quantity3);
+discount = (percentage*subtotal);
+salesTax = taxSales*(subtotal-discount);
+finalTotal = (subtotal-discount) + salesTax;
+
+System.out.printf("Subtotal : PHP %.2f", subtotal);
+System.out.printf("\nDiscount : PHP %.2f", discount);
+System.out.printf("\nSales Tax : PHP %.2f", salesTax);
+System.out.printf("\nFinal Total : PHP %.2f", finalTotal);
+
+
+
+
