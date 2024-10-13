@@ -1,0 +1,37 @@
+*Salvador, Hazel Angela M.
+Laboratory Challenge No. 4
+October 14, 2024*/
+
+import java.util.Scanner;
+
+public class GroceryDiscCalcu {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the total amount: PHP ");
+        double tPurchase = sc.nextDouble();
+        double discount = 0.0; // declare discount as double
+
+        // Discount rates
+        if (tPurchase >= 1000 && tPurchase <= 5000) {
+            discount = 0.05; 
+        } else if (tPurchase >= 5001 && tPurchase <= 10000) {
+            discount = 0.10;
+        } else if (tPurchase > 10000) {
+            discount = 0.15;
+        }
+
+        // Calculation of final price after applying the discount
+        double dCount = tPurchase * discount;
+        double fPrice = tPurchase - dCount; 
+
+        // Discount Output
+        if (discount > 0) {
+            System.out.println("Applied Discount: " + (int)(discount * 100) + "%");
+        } else {
+            System.out.println(">>>>>No discount<<<<<");
+        }
+        
+        // Final price output
+        System.out.println("Final Price: PHP " + fPrice);
+    }
+}
