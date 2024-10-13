@@ -1,0 +1,63 @@
+/*Salvador, Hazel Angela M.
+Laboratory Challenge No. 5
+October 14, 2024*/
+
+import java.util.Scanner;
+
+public class RestaurantOrderSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Welcome to CC2's Restaurant!");
+
+        // Display the menu with items and prices
+        System.out.println("\n>>>>>MENU<<<<<");
+        System.out.println("1. Burger    - PHP 100");
+        System.out.println("2. Fries     - PHP  50");
+        System.out.println("3. Soda      - PHP  30");
+        System.out.println("4. Ice Cream - PHP  45");
+        System.out.println("5. Exit");
+
+        // Get user input for menu selection
+        System.out.print("\nEnter the menu number of your choice: ");
+        int menuOrder = sc.nextInt();
+
+        // Get user input for Quantity and calculation for the total amount 
+        double totalAmount = 0;
+        switch (menuOrder) {
+            case 1:
+                System.out.print("Enter the quantity: ");
+                int quantity = sc.nextInt();
+                totalAmount = 100 * quantity;
+                System.out.println("You ordered Burger.");
+                break;
+            case 2:
+                System.out.print("Enter the quantity: ");
+                quantity = sc.nextInt();
+                totalAmount = 50 * quantity;
+                System.out.println("You ordered Fries.");
+                break;
+            case 3:
+                System.out.print("Enter the quantity: ");
+                quantity = sc.nextInt();
+                totalAmount = 30 * quantity;
+                System.out.println("You ordered Soda.");
+                break;
+            case 4:
+                System.out.print("Enter the quantity: ");
+                quantity = sc.nextInt();
+                totalAmount = 45 * quantity;
+                System.out.println("You ordered Ice Cream.");
+                break;
+            case 5:
+                System.out.println("Program Exited.");
+                return;
+            default:
+                System.out.println("Invalid menu choice. Please try again.");
+                return;
+        }
+
+        // Display the total bill
+        System.out.println("Total amount: " + totalAmount + " PHP");
+    }
+}
