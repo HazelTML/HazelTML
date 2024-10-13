@@ -4,7 +4,7 @@ October 14, 2024*/
 
 import java.util.Scanner;
 
-public class GroceryDiscCalcu {
+public class GroceryDiscountCalculator {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the total amount: PHP ");
