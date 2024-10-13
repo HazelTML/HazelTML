@@ -1,0 +1,39 @@
+/*Salvador, Hazel Angela M.
+Laboratory Challenge No. 6
+October 14, 2024*/
+
+import java.util.Scanner;
+
+public class ClassroomAttendanceSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Total number of students
+        System.out.print("Enter the total number of students: ");
+        
+        int tStudents = sc.nextInt();
+        System.out.print("\n");
+
+        int pCount = 0;
+        int aCount = 0;
+
+        // Use a loop to ask whether each student is present or absent
+        for (int i = 1; i <= tStudents; i++) {
+            System.out.print("Is student " + i + " present? (Y/N): ");
+            char ans = sc.next().charAt(0);
+
+            if (ans == 'Y' || ans == 'y') {
+                pCount++;
+            } else if (ans == 'N' || ans == 'n') {
+                aCount++;
+            } else {
+                System.out.println("Invalid response. Please enter Y or N only.");
+                i--; // To retry
+            }
+        }
+
+        // Output of the final counts
+        System.out.println("\nTotal present: " + pCount);
+        System.out.println("Total absent: " + aCount);
+    }
+}
