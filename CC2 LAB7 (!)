@@ -25,7 +25,7 @@ public class PasswordValidationSystem {
                 System.out.println("Password must contain at least one number.");
             } else {
                 isValid = true;
-                System.out.println("Your password is valid!");
+                System.out.println("\nYour password is valid!");
             }
         }
     }
