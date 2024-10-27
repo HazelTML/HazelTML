@@ -1,6 +1,6 @@
 /*Salvador, Hazel Angela M.
 Laboratory Challenge No. 6
-October 16, 2024*/
+October 27, 2024*/
 
 import java.util.Scanner;
 
@@ -10,12 +10,11 @@ public class ClassroomAttendanceSystem {
 
         // Total number of students
         System.out.print("Enter the total number of students: ");
-        
+
         int tStudents = sc.nextInt();
         System.out.print("\n");
 
-        int pCount = 0;
-        int aCount = 0;
+        int pCount = 0, aCount = 0;
 
         // Use a loop to ask whether each student is present or absent
         for (int i = 1; i <= tStudents; i++) {
