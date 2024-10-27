@@ -1,0 +1,59 @@
+/*Salvador, Hazel Angela M.
+Laboratory Challenge No. 7: Password Validation System
+October 27, 2024*/
+
+import java.util.Scanner;
+
+public class PasswordValidator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String password;
+
+        while (true) {
+            System.out.print("Enter your password: ");
+            password = scanner.nextLine();
+
+            // Check password length using a while loop
+            boolean hasValidLength = password.length() >= 8;
+            if (!hasValidLength) {
+                System.out.println("Password must be at least 8 characters long.");
+                continue;
+            }
+
+            // Check for uppercase letter using a for loop
+            boolean hasUppercase = false;
+            for (int i = 0; i < password.length(); i++) {
+                if (Character.isUpperCase(password.charAt(i))) {
+                    hasUppercase = true;
+                    break;
+                }
+            }
+            if (!hasUppercase) {
+                System.out.println("Password must contain at least one uppercase letter.");
+                continue;
+            }
+
+            // Check for a digit using a do-while loop
+            boolean hasNumber = false;
+            int i = 0;
+            do {
+                if (Character.isDigit(password.charAt(i))) {
+                    hasNumber = true;
+                    break;
+                }
+                i++;
+            } while (i < password.length());
+            
+            if (!hasNumber) {
+                System.out.println("Password must contain at least one number.");
+                continue;
+            }
+
+            // If all conditions are met
+            System.out.println("Your password is valid!");
+            break;
+        }
+
+        scanner.close();
+    }
+}
