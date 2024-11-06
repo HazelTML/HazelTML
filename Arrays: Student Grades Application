@@ -1,0 +1,52 @@
+/*Salvador, Hazel Angela M.
+Arrays: Student Grades Application
+November 6, 2024*/
+
+import java.util.Scanner;
+
+public class GradeApplication{
+     public static void main(String [] args){
+            Scanner s = new Scanner(System.in);
+            
+            int [ ] grade = new int[5];
+            int sum = 0;
+            double average = 0;
+
+            for (int ctr=0;ctr<5;ctr++)  {
+                System.out.println("Enter student grade: [" + (ctr + 1) + "]: ");   
+                grade[ctr]= s.nextInt();
+            }
+
+            for (int ctr=0;ctr<5;ctr++)  {
+                 sum = sum + grade[ctr];  
+                 System.out.println("Average of the student's grade: " + average);
+           }
+            
+            for (int ctr=0;ctr<5;ctr++) {
+            average = sum / 5;
+            }
+            
+            sum = grade[0]+grade[1]+grade[2]+grade[3]+grade[4];
+          //  sum = 89 + 78 + 75 + 80 + 85
+     }
+}
+     
+/*Array
+grade[0] = 89
+grade[1] =78
+grade[2] =75
+grade[3]=80
+grade[4]=85
+
+Lowest = 75 <85
+   Lowest 75
+highest=89   > 85
+   Highest = 89
+
+OUTPUT:
+Enter student grade[1]:89
+Enter student grade[2]:78
+Enter student grade[3]:75
+Enter student grade[4]:80
+Enter student grade[5]:85
+*/
