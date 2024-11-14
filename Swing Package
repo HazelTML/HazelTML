@@ -1,0 +1,76 @@
+CODE 1: 
+import javax.swing.JOptionPane
+
+public class SimpleGUI{
+    public static void main(String [] args){
+          String name= JOptionPane.showInputDialog(null, "Enter your name:");
+          String birthYear= JOptionPane.showInputDialog(null, "Enter your year of birth:");
+          int byear = Integer.parseInt(birthYear); 
+          int currentYear = 2024;
+          int age = currentYear - bYear;
+
+          JOptionPane.showMessageDialog(null, "Hello " + name  + ",  you are " +  age + " years old.");
+}
+
+OUTPUT
+Enter name: Gabriel
+Enter year of birth: 2006
+Hello Gabriel, you are 18 years old.
+
+CODE 2: 
+import javax.swing.JOptionPane;
+
+public class AdditionCalculator {
+        public static void main(String[] args) { 
+             // Prompt the user to enter the first number
+             String firstNumber = JOptionPane.showInputDialog(null, "Enter the first number:", "Input", JOptionPane.QUESTION_MESSAGE);
+             // Prompt the user to enter the second number
+            String secondNumber = JOptionPane.showInputDialog(null, "Enter the second number:", "Input", JOptionPane.QUESTION_MESSAGE); 
+            // Convert the input strings to integers
+            int num1 = Integer.parseInt(firstNumber);
+            int num2 = Integer.parseInt(secondNumber);
+            // Perform the addition
+            int sum = num1 + num2;
+
+           // Display the result in a message dialog
+           JOptionPane.showMessageDialog(null, "The sum of " + num1 + " and " + num2 + " is: " + sum, "Result",JOptionPane.INFORMATION_MESSAGE);
+    }
+}
+
+CODE 3: 
+import javax.swing.JOptionPane;
+
+public class MultiDialogApp {
+    public static void main(String[] args) {
+        // Step 1: Welcome Message (Message Dialog)
+         JOptionPane.showMessageDialog(null, "Welcome to the Multi-Dialog App!", "Welcome to JOptionPane", JOptionPane.INFORMATION_MESSAGE);
+        // Step 2: Ask the User's Name (Input Dialog)
+        String name = JOptionPane.showInputDialog(null, "Please enter your name:", "Name Input", JOptionPane.QUESTION_MESSAGE);
+        // Step 3: Confirm Action (Confirm Dialog)
+        int confirm = JOptionPane.showConfirmDialog(null, "Hello " + name + ", do you want to proceed?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        // Step 4: Proceed based on confirmation response
+
+        if (confirm == JOptionPane.YES_OPTION) {
+              // User chose to proceed
+             // Ask for two numbers (Input Dialog)              
+              String fNum= JOptionPane.showInputDialog(null, "Enter the first number:", "First Input", JOptionPane.QUESTION_MESSAGE);
+              String sNum= JOptionPane.showInputDialog(null, "Enter the second number:", "Second Input", JOptionPane.QUESTION_MESSAGE); 
+            // Convert the input strings to integers
+            int num1 = Integer.parseInt(fNum);
+            int num2 = Integer.parseInt(sNum);
+            int sum = num1 + num2;
+
+            // Display the result (Message Dialog)
+            JOptionPane.showMessageDialog(null, "The sum of " + num1 + " and " + num2 + " is: " + sum, "Result", JOptionPane.INFORMATION_MESSAGE);
+            // Step 5: Choose an Option (Option Dialog)
+            String[] options = {"Burger", "Fries", "Ice Cream"};
+            int choice = JOptionPane.showOptionDialog(null, "Choose an option:", "Option Selection", JOptionPane.DEFAULT_OPTION,
+                                                      JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+            // Display the chosen option
+            JOptionPane.showMessageDialog(null, "You chose: " + options[choice], "Your Choice", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // User chose not to proceed
+            JOptionPane.showMessageDialog(null, "Goodbye " + name + "! Have a great day!", "Exit Message", JOptionPane.INFORMATION_MESSAGE);
+        }  
+   }
+}      
