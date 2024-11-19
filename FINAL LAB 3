@@ -1,0 +1,58 @@
+/*Salvador, Hazel Angela M.
+Final Challenge No.3: University Course Emrollment and Grades Tracker (1D and 2D Arrays)
+November 20, 2024*/
+
+import java.util.Scanner;
+
+public class StudentGradeTracker {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Number of students and subjects
+        final int NUM_STUDENTS = 5;
+        final int NUM_SUBJECTS = 3;
+
+        // Array to store student names
+        String[] studentNames = new String[NUM_STUDENTS];
+
+        // 2D array to store grades for each student in multiple subjects
+        double[][] grades = new double[NUM_STUDENTS][NUM_SUBJECTS];
+
+        // Collect student names
+        System.out.println("Enter the names of " + NUM_STUDENTS + " students:");
+        for (int i = 0; i < NUM_STUDENTS; i++) {
+            System.out.print("Student " + (i + 1) + " name: ");
+            studentNames[i] = scanner.nextLine();
+        }
+
+        // Collect grades for each student in each subject
+        System.out.println("\nEnter the grades for each student in " + NUM_SUBJECTS + " subjects:");
+        for (int i = 0; i < NUM_STUDENTS; i++) {
+            System.out.println("Grades for " + studentNames[i] + ":");
+            for (int j = 0; j < NUM_SUBJECTS; j++) {
+                System.out.print("Subject " + (j + 1) + ": ");
+                grades[i][j] = scanner.nextDouble();
+            }
+        }
+
+        // Calculate and display average grade for each student
+        System.out.println("\nStudent Grades and Averages:");
+        for (int i = 0; i < NUM_STUDENTS; i++) {
+            double total = 0;
+
+            // Calculate total grades for each student
+            for (int j = 0; j < NUM_SUBJECTS; j++) {
+                total += grades[i][j];
+            }
+
+            // Calculate average grade
+            double average = total / NUM_SUBJECTS;
+
+            // Display student name and average grade
+            System.out.printf("%s's average grade: %.2f%n", studentNames[i], average);
+        }
+
+        scanner.close();
+    }
+}
