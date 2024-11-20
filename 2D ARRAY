@@ -1,0 +1,53 @@
+public class TwoDimensionalArrayExample {
+
+    public static void main(String[] args) {
+
+        Scanner anna = new Scanner(System.in);
+
+        // Declare and initialize a 2D array (3 students, 4 subjects)
+
+        int[][] scores = {
+
+            {85, 90, 78, 92},  // Scores for student
+
+            {88, 76, 85, 80},  // Scores for student
+
+            {90, 88, 89, 95}   // Scores for student
+
+        };
+
+        for (int row =0; row < scores.length; row++){
+
+             for (int col=0; col < scores.length; col++){
+
+                     System.out.println(“Enter student “ + (row+1) + “score:”);
+
+                     scores[row][col]= anna.nextInt();
+
+              }
+
+        }
+
+        // Calculate and display the average score for each student
+
+        for (int i = 0; i < scores.length; i++) { // Loop through rows
+
+            int total = 0;
+
+            for (int j = 0; j < scores[i].length; j++) { // Loop through columns
+
+                total += scores[i][j]; // Sum scores for the student
+
+            }
+
+            double average = (double) total / scores[i].length;
+
+            System.out.println("Student" + (i + 1) + "/tAverage: " + average);
+
+        }
+
+       
+
+    }
+
+}
