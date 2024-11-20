@@ -2,9 +2,62 @@
 Final Challenge No.1: Retail Store Inventory Management (1D Array)
 November 20, 2024*/
 
-// VERSION 1: 
+// VERSION 1: HAS PRE-DEFINED VALUE
 
+public class PdRetail {
+    
+    public static void main(String[]args){
+        
+        // Array to hold the prices of 10 items
+        double price[] = {250.00, 225.00, 200.00, 175.00, 150.00, 125.00, 100.00, 75.00, 50.00, 25.00};
+        
+        // Array to hold the quantities of 10 items
+        int quantity[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        
+        // Variable to accumulate the total amount, average, highest, and lowest
+        double tAmount = 0;
+        double hAmount = 0;
+        double lAmount = Double.MAX_VALUE;
+        
+        // Loop to calculate subtotal for each item and accumulate totalAmount
+        for (int i = 0; i < 10; i++){
+            
+            // Calculate the subtotal for each item (price * quantity)
+            double iSum = price[i] * quantity[i];
+            
+            // Add the item subtotal to the total amount
+            tAmount = tAmount + iSum;
+            
+            // Print out details of the current item: price, quantity, and subtotal
+            System.out.println("Item " + (i + 1) + ": Price = Php " + price[i] + ", Quantity = " + quantity[i] + ", Subtotal = Php " + iSum);
+        }
+        
+            // To calculate the total value and to find highest and lowest values
+        for (int i = 0; i < 10; i++) {
+            double pAmount = quantity[i] * price[i];
+            tAmount += pAmount;
 
+            if (pAmount > hAmount) {
+                hAmount = pAmount;
+            }
+
+            if (pAmount < lAmount) {
+                lAmount = pAmount;
+            }
+        }
+
+        // Calculate the average value
+        double aAmount = tAmount / 10;
+
+        // Output results
+        System.out.println("\nStock Summary:");
+        System.out.println("Total value of items in stock: Php " + tAmount);
+        System.out.println("Average value of items in stock: Php " + tAmount);
+        System.out.println("Highest value of a product in stock: Php " + hAmount);
+        System.out.println("Lowest value of a product in stock: Php " + lAmount);
+
+    }
+}
 
 // VERSION 2: ASKS FOR USER INPUT
 
