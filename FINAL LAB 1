@@ -2,61 +2,67 @@
 Final Challenge No.1: Retail Store Inventory Management (1D Array)
 November 20, 2024*/
 
+// VERSION 1: 
+
+
+
+// VERSION 2: ASKS FOR USER INPUT
+
 import java.util.Scanner;
 
-public class StockManagement {
+public class InventoryManagement {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Number of products
-        final int NUM_PRODUCTS = 10;
+        // Declare the stock of 10 products
+        final int prod = 10;
 
         // Arrays to store stock levels and prices
-        int[] stockLevels = new int[NUM_PRODUCTS];
-        double[] prices = new double[NUM_PRODUCTS];
+        int[] stockLevels = new int[prod];
+        double[] prices = new double[prod];
 
-        // Collect user input for stock levels and prices
-        System.out.println("Enter the stock levels for " + NUM_PRODUCTS + " products:");
-        for (int i = 0; i < NUM_PRODUCTS; i++) {
-            System.out.print("Stock level for product " + (i + 1) + ": ");
-            stockLevels[i] = scanner.nextInt();
+        // Prompt the user to input for stock levels and prices
+        System.out.println("Enter the stock levels for " + prod + " products:");
+        for (int stock = 0; stock < prod; stock++) {
+            System.out.print("Stock level for product " + (stock + 1) + ": ");
+            stockLevels[stock] = scanner.nextInt();
         }
 
-        System.out.println("Enter the prices for " + NUM_PRODUCTS + " products:");
-        for (int i = 0; i < NUM_PRODUCTS; i++) {
-            System.out.print("Price for product " + (i + 1) + ": ");
-            prices[i] = scanner.nextDouble();
+        System.out.println("\nEnter the prices for " + prod + " products:");
+        for (int price = 0; price < prod; price++) {
+            System.out.print("Price for product " + (price + 1) + ": ");
+            prices[price] = scanner.nextDouble();
         }
 
-        // Variables to calculate total, average, highest, and lowest values
-        double totalValue = 0;
-        double highestValue = 0;
-        double lowestValue = Double.MAX_VALUE;
+        // Declare variables to calculate the total, average, highest, and lowest values
+        double tValue = 0;
+        double hValue = 0;
+        double lValue = Double.MAX_VALUE;
 
-        // Calculate total value and find highest/lowest values
-        for (int i = 0; i < NUM_PRODUCTS; i++) {
-            double productValue = stockLevels[i] * prices[i];
-            totalValue += productValue;
+        // To calculate the total value and to find highest and lowest values
+        for (int total = 0; total < prod; total++) {
+            double pValue = stockLevels[total] * prices[total];
+            tValue += pValue;
 
-            if (productValue > highestValue) {
-                highestValue = productValue;
+            if (pValue > hValue) {
+                hValue = pValue;
             }
 
-            if (productValue < lowestValue) {
-                lowestValue = productValue;
+            if (pValue < lValue) {
+                lValue = pValue;
             }
         }
 
         // Calculate the average value
-        double averageValue = totalValue / NUM_PRODUCTS;
+        double aValue = tValue / prod;
 
         // Output results
         System.out.println("\nStock Summary:");
-        System.out.println("Total value of all items in stock: $" + totalValue);
-        System.out.println("Average value of items in stock: $" + averageValue);
-        System.out.println("Highest value of a product in stock: $" + highestValue);
-        System.out.println("Lowest value of a product in stock: $" + lowestValue);
+        System.out.println("Total value of items in stock: Php " + tValue);
+        System.out.println("Average value of items in stock: Php " + aValue);
+        System.out.println("Highest value of a product in stock: Php " + hValue);
+        System.out.println("Lowest value of a product in stock: Php " + lValue);
 
         scanner.close();
     }
