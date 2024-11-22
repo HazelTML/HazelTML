@@ -1,4 +1,7 @@
 Working with AWT packages
+/*Salvador, Hazel Angela M.
+November 22, 2024*/
+
 import java.awt.*;
 
 import javax.swing.*;
@@ -6,25 +9,25 @@ import javax.swing.*;
 public class DrawShapes extends Canvas{
       public void paint(Graphics an){
 
-            an.setColor(Color.GREEN);
+            an.setColor(Color.RED);
 
             //draw rectangle (x,y,width,height)
             an.drawRect(50,50,150,100);
-            an.setColor(Color.BLUE);
-            an.fillRect(250,50,150,100);
             an.setColor(Color.RED);
+            an.fillRect(250,50,150,100);
+            an.setColor(Color.ORANGE);
             an.drawOval(450,50,100,100);
             an.fillOval(600,50,100,100);
             an.setColor(Color.BLACK);
             an.drawLine(50,200,700,200);
-            an.drawLine(
-            an.drawLine(
+            an.drawLine(750,100,750,200);
+            an.drawLine(800,100,800,200);
 
       }
 
        public static void main(String [] args){
 
-            JFrame f = new JFrame (“Anna’s First Drawing”);
+            JFrame f = new JFrame (“Hazel's First Drawing”);
             DrawShapes canvas = new DrawShapes();
             f.setSize(1000,500);
             f.add(canvas);
