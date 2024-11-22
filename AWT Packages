@@ -1,0 +1,35 @@
+Working with AWT packages
+import java.awt.*;
+
+import javax.swing.*;
+
+public class DrawShapes extends Canvas{
+      public void paint(Graphics an){
+
+            an.setColor(Color.GREEN);
+
+            //draw rectangle (x,y,width,height)
+            an.drawRect(50,50,150,100);
+            an.setColor(Color.BLUE);
+            an.fillRect(250,50,150,100);
+            an.setColor(Color.RED);
+            an.drawOval(450,50,100,100);
+            an.fillOval(600,50,100,100);
+            an.setColor(Color.BLACK);
+            an.drawLine(50,200,700,200);
+            an.drawLine(
+            an.drawLine(
+
+      }
+
+       public static void main(String [] args){
+
+            JFrame f = new JFrame (“Anna’s First Drawing”);
+            DrawShapes canvas = new DrawShapes();
+            f.setSize(1000,500);
+            f.add(canvas);
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            f.setVisible(true);
+
+       }
+}
