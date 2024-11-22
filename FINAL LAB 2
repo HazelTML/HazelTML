@@ -1,57 +1,57 @@
 /*Salvador, Hazel Angela M.
 Final Challenge No.2: Weather Data Tracker (2D Array)
-November 20, 2024*/
+November 22, 2024*/
 
 import java.util.Scanner;
 
-public class TemperatureTracker {
+public class WeatherTracker {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Constants for the number of cities and days
-        final int NUM_CITIES = 3;
-        final int NUM_DAYS = 7;
+        // Number of cities and days 
+        final int cities = 3;
+        final int days = 7;
 
-        // 2D array to store daily temperatures for 3 cities over 7 days
-        double[][] temperatures = new double[NUM_CITIES][NUM_DAYS];
+        // 2D array to store daily temperature readings for 3 cities over 7 days
+        double[][] temps = new double[cities][days];
 
-        // Collect user input for temperature readings
-        System.out.println("Enter the daily temperatures for " + NUM_CITIES + " cities over " + NUM_DAYS + " days:");
-        for (int city = 0; city < NUM_CITIES; city++) {
-            System.out.println("City " + (city + 1) + ":");
-            for (int day = 0; day < NUM_DAYS; day++) {
-                System.out.print("Day " + (day + 1) + ": ");
-                temperatures[city][day] = scanner.nextDouble();
+        // Gather user input 
+        System.out.println("Enter the daily temperatures for " + cities + " cities over " + days + " days:");
+        for (int c = 0; c < cities; c++) {
+            System.out.println("City " + (c + 1) + ":");
+            for (int d = 0; d < days; d++) {
+                System.out.print("\tDay " + (d + 1) + ": ");
+                temps[c][d] = scanner.nextDouble();
             }
         }
 
-        // Variables to store averages and highest temperatures for each city
-        double[] averageTemperatures = new double[NUM_CITIES];
-        double[] highestTemperatures = new double[NUM_CITIES];
+        // Declaration of variables to store averages and highest temperatures for each city
+        double[] aTemperatures = new double[cities];
+        double[] hTemperatures = new double[cities];
 
-        // Calculate average and highest temperature for each city
-        for (int city = 0; city < NUM_CITIES; city++) {
-            double totalTemperature = 0;
-            double highestTemperature = Double.MIN_VALUE;
+        // Calculation of average and highest temperature for each city
+        for (int c = 0; c < cities; c++) {
+            double tTemperature = 0;
+            double hTemperature = Double.MIN_VALUE;
 
-            for (int day = 0; day < NUM_DAYS; day++) {
-                totalTemperature += temperatures[city][day];
-                if (temperatures[city][day] > highestTemperature) {
-                    highestTemperature = temperatures[city][day];
+            for (int d = 0; d < days; d++) {
+                tTemperature += temps[c][d];
+                if (temps[c][d] > hTemperature) {
+                    hTemperature = temps[c][d];
                 }
             }
 
-            averageTemperatures[city] = totalTemperature / NUM_DAYS;
-            highestTemperatures[city] = highestTemperature;
+            aTemperatures[c] = tTemperature / days;
+            hTemperatures[c] = hTemperature;
         }
 
         // Output the results formatted to two decimal places
-        System.out.println("\nTemperature Analysis:");
-        for (int city = 0; city < NUM_CITIES; city++) {
-            System.out.printf("City %d:%n", city + 1);
-            System.out.printf("  Average Temperature: %.2f%n", averageTemperatures[city]);
-            System.out.printf("  Highest Temperature: %.2f%n", highestTemperatures[city]);
+        System.out.println("\nTemperature Results:");
+        for (int c = 0; c < cities; c++) {
+            System.out.printf("City %d:%n", c + 1);
+            System.out.printf("  Average Temperature: %.2f%n", aTemperatures[c]);
+            System.out.printf("  Highest Temperature: %.2f%n", hTemperatures[c]);
         }
 
         scanner.close();
