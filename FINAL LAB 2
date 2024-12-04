@@ -1,8 +1,7 @@
+//REVISED AND MOST FINAL OUTPUT
 /*Salvador, Hazel Angela M.
 Final Challenge No.2: Weather Data Tracker (2D Array)
 December 4, 2024*/
-
-package salvador;
 
 import java.util.Scanner;
 
