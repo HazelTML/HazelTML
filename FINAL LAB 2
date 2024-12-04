@@ -30,7 +30,7 @@ public class WeatherTracker {
         double[] aTemperatures = new double[cities];
         double[] hTemperatures = new double[cities];
 
-        // Calculation of average and highest temperature for each city
+        // Calculation of highest temperature for each city
         for (int c = 0; c < cities; c++) {
             double tTemperature = 0;
             double hTemperature = Double.MIN_VALUE;
@@ -41,12 +41,13 @@ public class WeatherTracker {
                     hTemperature = temps[c][d];
                 }
             }
-
+            
+        // Calculation of average temperature for each city
             aTemperatures[c] = tTemperature / days;
             hTemperatures[c] = hTemperature;
         }
 
-        // Output the results formatted to two decimal places
+        // Display the results formatted to two decimal places
         System.out.println("\nTemperature Results:");
         for (int c = 0; c < cities; c++) {
             System.out.printf("City %d:%n", c + 1);
