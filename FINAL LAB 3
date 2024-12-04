@@ -1,3 +1,4 @@
+//REVISED AND MOST FINAL OUTPUT
 /*Salvador, Hazel Angela M.
 Final Challenge No.3: University Course Enrollment and Grades Tracker (1D and 2D Arrays)
 November 25, 2024*/
@@ -9,24 +10,24 @@ public class CoursenGradeTracker {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Number of students and subjects
+        // declaration for the number of students and subjects
         final int students = 5;
         final int subjects = 3;
 
-        // Array to store student names
+        // make an Array to store student names
         String[] sNames = new String[students];
 
         // 2D array to store grades for each student in multiple subjects
         double[][] grades = new double[students][subjects];
 
-        // Collect student names
+        // prompt to Collect student names
         System.out.println("Enter the names of " + students + " students:");
         for (int i = 0; i < students; i++) {
             System.out.print("Student " + (i + 1) + " name: ");
             sNames[i] = scanner.nextLine();
         }
 
-        // Collect grades for each student in each subject
+        // promot to Collect grades for each student in each subject
         System.out.println("\nEnter the grades for each student in " + subjects + " subjects:");
         for (int i = 0; i < students; i++) {
             System.out.println("Grades for " + sNames[i] + ":");
