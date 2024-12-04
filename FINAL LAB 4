@@ -1,9 +1,11 @@
 /*salvador, Hazel Angela M. 
 December 4, 2024
 Final Challenge No. 4: Linked Lists Application*/
-package arrayvslist;
+
+package salvador;
+
 import java.util.Scanner;
-class MusicPlaylist {
+class FinalFour {
     // Node class to represent each song in the playlist
     private class Node {
         String song;
@@ -98,7 +100,7 @@ class MusicPlaylist {
     // Main method to interact with the playlist
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        MusicPlaylist playlist = new MusicPlaylist();
+        FinalFour playlist = new FinalFour();
         
         while (true) {
             // Display menu options
