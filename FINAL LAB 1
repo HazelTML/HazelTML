@@ -59,6 +59,47 @@ public class PdRetail {
     }
 }
 
+//SUBMITTED OUTPUT
+/*Salvador, Hazel Angela M.
+Final Challenge No.1: Retail Store Inventory Management (1D Array)
+November 20, 2024*/
+
+package salvador;
+        
+// VERSION 1: HAS PRE-DEFINED VALUE
+public class PdRetail {
+    
+    public static void main(String[]args){
+        
+        // This array will hold the prices of 10 pre-defined value of items
+        double price[] = {250.00, 225.00, 200.00, 175.00, 150.00, 125.00, 100.00, 75.00, 50.00, 25.00};
+        
+        // This array will hold the stock levels of 10 pre-defined value of items
+        int quantity[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        
+        // Variable to accumulate the total starting amount
+        double tAmount = 0;
+        
+        // Loop to calculate subtotal for each item and solve the totalAmount
+        for (int i = 0; i < 10; i++){
+            
+            // Calculate the product for each item (price * quantity)
+            double iSum = price[i] * quantity[i];
+            
+            // Add the item subtotal to the total amount
+            tAmount = tAmount + iSum;
+            
+            // Print out details of the current item: price, quantity, and subtotal
+            System.out.println("Item " + (i + 1) + ": Price = Php " + price[i] + ", Quantity = " + quantity[i] + ", Subtotal = Php " + iSum);
+        }
+
+        // Output results
+        System.out.println("\nStock Summary:");
+        System.out.printf("Total value of items in stock: Php %,.2f\n", tAmount);
+    
+    }
+}
+
 // VERSION 2: ASKS FOR USER INPUT
 
 import java.util.Scanner;
