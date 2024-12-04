@@ -1,22 +1,22 @@
 /*Salvador, Hazel Angela M.
 Final Challenge No.2: Weather Data Tracker (2D Array)
-November 22, 2024*/
+December 4, 2024*/
+
+package salvador;
 
 import java.util.Scanner;
 
 public class WeatherTracker {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Number of cities and days 
-        final int cities = 3;
-        final int days = 7;
+        // Declaration of the number of cities and days 
+        final int cities = 3, days = 7;
 
-        // 2D array to store daily temperature readings for 3 cities over 7 days
+        // Create a 2D array to store daily temperature readings for 3 cities over 7 days
         double[][] temps = new double[cities][days];
 
-        // Gather user input 
+        // System scanner to gather user input 
         System.out.println("Enter the daily temperatures for " + cities + " cities over " + days + " days:");
         for (int c = 0; c < cities; c++) {
             System.out.println("City " + (c + 1) + ":");
