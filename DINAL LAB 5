@@ -3,7 +3,7 @@
 Final Challenge No. 5: Exception Handling Laboratory Challenges
 December 4, 2024*/
 
-import java.util.Scanner;
+import java.util.Scanner; 
 
 // Custom exception class for handling invalid product quantity
 class InvalidQuantityException extends Exception {
