@@ -1,0 +1,60 @@
+/*Salvador, Hazel Angela M.
+Final Challenge No. 5: Exception Handling Laboratory Challenges
+December 4, 2024*/
+
+import java.util.Scanner;
+
+// Custom exception class for handling invalid product quantity
+class InvalidQuantityException extends Exception {
+    // Constructor that passes the message to the parent Exception class
+    public InvalidQuantityException(String message) {
+        super(message); // Pass the message to the superclass (Exception)
+    }
+}
+
+public class ExpHandling {
+    public static void main(String[] args) {
+        // Available stock for the product (predefined)
+        int aStock = 100; // declaration of initial stock of product
+        
+        // Price per unit of the product
+        double pPerUnit = 25.50; // declaration of price per product
+        
+        // Scanner object to prompt user input
+        Scanner scanner = new Scanner(System.in);
+
+        // displays the available stock
+        System.out.printf("Welcome to the Online Shop! The available stock is: %d units.\n", aStock);
+        System.out.printf("Price per unit: $%.2f\n", pPerUnit);
+        
+        // Asking the user to enter the quantity they wish to buy
+        System.out.print("Enter the quantity of products you wish to purchase: ");
+        int quantity = scanner.nextInt();
+
+        try {
+            // Check if the quantity is negative or exceeds available stock
+            if (quantity < 0) {
+                // If the quantity is negative, throw an InvalidQuantityException
+                throw new InvalidQuantityException("Invalid quantity! Quantity cannot be negative.");
+            } else if (quantity > aStock) {
+                // If the quantity exceeds the available stock, throw an InvalidQuantityException
+                throw new InvalidQuantityException("Invalid quantity! Quantity exceeds available stock.");
+            } else {
+                // If the quantity is valid, calculate the total cost
+                double tCost = pPerUnit * quantity;
+                
+                // Display the total cost of the purchase
+                System.out.printf("Purchase successful! The total cost is: $%,.2f\n", tCost);
+                 
+                // Update available stock
+                aStock -= quantity;
+                System.out.printf("Remaining stock: %d units.\n", aStock);
+            }
+        } catch (InvalidQuantityException e) {
+            // If an InvalidQuantityException is caught, print the error message
+            System.out.println(e.getMessage());
+        }
+
+        scanner.close();
+    }
+}
