@@ -1,0 +1,119 @@
+import java.util.Scanner;
+
+// Calculator class containing all the required methods
+class Calculator {
+    // Adds two numbers
+    public double addTwoNumbers(double num1, double num2) {
+        return num1 + num2;
+    }
+
+    // Subtracts two numbers
+    public double subtractTwoNumbers(double num1, double num2) {
+        return num1 - num2;
+    }
+
+    // Multiplies two numbers
+    public double multiplyTwoNumbers(double num1, double num2) {
+        return num1 * num2;
+    }
+
+    // Divides two numbers
+    public double divideTwoNumbers(double num1, double num2) {
+        if (num2 == 0) {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+        return num1 / num2;
+    }
+
+    // Checks if a number is odd
+    public boolean isOdd(int number) {
+        return number % 2 != 0;
+    }
+
+    // Checks if a number is even
+    public boolean isEven(int number) {
+        return number % 2 == 0;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Calculator calculator = new Calculator();
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\nChoose a command:");
+            System.out.println("1. Add Two Numbers");
+            System.out.println("2. Subtract Two Numbers");
+            System.out.println("3. Multiply Two Numbers");
+            System.out.println("4. Divide Two Numbers");
+            System.out.println("5. Check if a Number is Odd");
+            System.out.println("6. Check if a Number is Even");
+            System.out.println("7. Exit the Application");
+            System.out.print("Enter your choice (1-7): ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1: // Add Two Numbers
+                    System.out.print("Enter the first number: ");
+                    double addNum1 = scanner.nextDouble();
+                    System.out.print("Enter the second number: ");
+                    double addNum2 = scanner.nextDouble();
+                    System.out.println("Result: " + calculator.addTwoNumbers(addNum1, addNum2));
+                    break;
+
+                case 2: // Subtract Two Numbers
+                    System.out.print("Enter the first number: ");
+                    double subNum1 = scanner.nextDouble();
+                    System.out.print("Enter the second number: ");
+                    double subNum2 = scanner.nextDouble();
+                    System.out.println("Result: " + calculator.subtractTwoNumbers(subNum1, subNum2));
+                    break;
+
+                case 3: // Multiply Two Numbers
+                    System.out.print("Enter the first number: ");
+                    double mulNum1 = scanner.nextDouble();
+                    System.out.print("Enter the second number: ");
+                    double mulNum2 = scanner.nextDouble();
+                    System.out.println("Result: " + calculator.multiplyTwoNumbers(mulNum1, mulNum2));
+                    break;
+
+                case 4: // Divide Two Numbers
+                    System.out.print("Enter the first number: ");
+                    double divNum1 = scanner.nextDouble();
+                    System.out.print("Enter the second number: ");
+                    double divNum2 = scanner.nextDouble();
+                    try {
+                        System.out.println("Result: " + calculator.divideTwoNumbers(divNum1, divNum2));
+                    } catch (ArithmeticException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+
+                case 5: // Check if a Number is Odd
+                    System.out.print("Enter a number: ");
+                    int oddNum = scanner.nextInt();
+                    System.out.println("Is Odd: " + calculator.isOdd(oddNum));
+                    break;
+
+                case 6: // Check if a Number is Even
+                    System.out.print("Enter a number: ");
+                    int evenNum = scanner.nextInt();
+                    System.out.println("Is Even: " + calculator.isEven(evenNum));
+                    break;
+
+                case 7: // Exit the Application
+                    System.out.println("Exiting the application.");
+                    running = false;
+                    break;
+
+                default: // Invalid Choice
+                    System.out.println("Invalid choice. Please select a valid option.");
+            }
+        }
+
+        scanner.close();
+    }
+}
