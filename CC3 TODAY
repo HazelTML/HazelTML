@@ -1,0 +1,21 @@
+Discuss the following with a maximum of 75 word per question. (REVISED ALREADY)
+
+1. What are access modifiers, and why are they important in programming?
+- Access modifiers in Java define the visibility and scope of classes, methods, variables, and constructors, enforcing encapsulation. They restrict direct access to an object’s internal components, securing sensitive data and preventing unauthorized modifications. By controlling which code can interact with specific elements, they improve safety, accessibility, and maintainability, ensuring that only authorized users can access critical features. In short, access modifiers safeguard implementation details while promoting clean, secure code design.
+
+2. Describe the different types of access modifiers and their use cases.
+- Java has four access modifiers: Default (no keyword), which is accessible within the same package; Private, which restricts access to the class in which it’s declared; Protected, which allows access within the same package or in subclasses across packages; and Public, which has the widest scope, accessible from anywhere in the program without restriction.
+
+3. Explain the significance of final and enums in programming.
+- In programming, final is a keyword that makes variables, methods, or classes immutable, preventing changes or subclassing. When applied to variables, it ensures the value remains constant. Enums, short for enumerations, define a set of named constants, improving code readability and maintainability by representing fixed sets of related values in a clear, organized way. Both concepts enhance the stability and clarity of code.
+
+4. How does encapsulation help in securing a program’s internal implementation?
+- Encapsulation helps secure a program's internal implementation by restricting direct access to an object's data and exposing only necessary methods (getters/setters) to interact with it. This prevents unauthorized modifications and allows control over how data is accessed or updated, thus protecting the integrity of the internal state. 
+
+5. Why do we need final instead of using regular variables?
+- We use final instead of regular variables to create constants that cannot be reassigned, ensuring immutability. This helps prevent accidental changes to critical values, improving code reliability and maintainability. 
+
+REFERENCES:
+science/introduction-to-c/data-types-variables-and-constants/access-modifiers/#:~:text=Access%20Modifiers%20or% 
+https://www.simplilearn.com/tutorials/java-tutorial/access-modifiers#:~:text=Access%20modifiers%20provide%20a%20structured,depend%20on%20the%20public%20interfaces.
+https://www.geeksforgeeks.org/access-modifiers-java/ 
