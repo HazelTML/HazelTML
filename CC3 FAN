@@ -1,0 +1,87 @@
+//FAN CLASS
+
+public class Fan {
+    // Data fields
+    private int speed;
+    private String color;
+    private boolean power;
+
+    // Static values for speed
+    public static final int SLOW = 1;
+    public static final int MEDIUM = 2;
+    public static final int FAST = 3;
+
+    // Default constructor
+    public Fan() {
+        this.speed = SLOW; // Default speed is slow
+        this.color = "black"; // Default color is black
+        this.power = false; // Default power state is off
+    }
+
+    // Method to display all attributes
+    public String displayAll() {
+        if (power) {
+            return "Fan is on. Speed: " + speed + ", Color: " + color + ", Power: " + power;
+        } else {
+            return "Fan is off! Color: " + color;
+        }
+    }
+
+    // Setters for the attributes
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setPower(boolean power) {
+        this.power = power;
+    }
+}
+
+//TESTFAN CLASS 
+
+public class TestFan {
+    public static void main(String[] args) {
+        // Create the first Fan object (turned off)
+        Fan fan1 = new Fan();
+
+        // Create the second Fan object (turned on)
+        Fan fan2 = new Fan();
+        fan2.setSpeed(Fan.FAST); // Set speed to fast
+        fan2.setColor("blue"); // Change color to blue
+        fan2.setPower(true); // Turn the fan on
+
+        // Display the attributes of both fans
+        System.out.println(fan1.displayAll()); // Output for fan1 (off)
+        System.out.println(fan2.displayAll()); // Output for fan2 (on)
+    }
+}
+
+//UML CLASS DIAGRAM
+
+-------------------------
+|         Fan           |
+-------------------------
+| - speed: int          |
+| - color: String       |
+| - power: boolean      |
+-------------------------
+| + SLOW: int = 1       |
+| + MEDIUM: int = 2     |
+| + FAST: int = 3       |
+-------------------------
+| + Fan()               |
+| + displayAll(): String|
+| + setSpeed(int): void |
+| + setColor(String): void |
+| + setPower(boolean): void |
+-------------------------
+
+-------------------------
+|       TestFan         |
+-------------------------
+| + main(String[]): void|
+-------------------------
