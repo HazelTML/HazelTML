@@ -1,33 +1,42 @@
-//FAN CLASS
-
 public class Fan {
     // Data fields
     private int speed;
     private String color;
     private boolean power;
 
-    // Static values for speed
+    // Static speed values
     public static final int SLOW = 1;
     public static final int MEDIUM = 2;
     public static final int FAST = 3;
 
     // Default constructor
     public Fan() {
-        this.speed = SLOW; // Default speed is slow
-        this.color = "black"; // Default color is black
-        this.power = false; // Default power state is off
+        this.speed = SLOW;
+        this.color = "black";
+        this.power = false;
     }
 
-    // Method to display all attributes
-    public String displayAll() {
-        if (power) {
-            return "Fan is on. Speed: " + speed + ", Color: " + color + ", Power: " + power;
-        } else {
-            return "Fan is off! Color: " + color;
-        }
+    // Parameterized constructor
+    public Fan(int speed, String color, boolean power) {
+        this.speed = speed;
+        this.color = color;
+        this.power = power;
     }
 
-    // Setters for the attributes
+    // Getter methods
+    public int getSpeed() {
+        return speed;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public boolean isPowerOn() {
+        return power;
+    }
+
+    // Setter methods
     public void setSpeed(int speed) {
         this.speed = speed;
     }
@@ -39,24 +48,25 @@ public class Fan {
     public void setPower(boolean power) {
         this.power = power;
     }
-}
 
-//TESTFAN CLASS 
+    // Method to display attributes
+    public String displayAll() {
+        if (power) {
+            return "Fan is ON: Speed = " + speed + ", Color = " + color + ", Power = " + power;
+        } else {
+            return "Fan is OFF: Color = " + color + ", Fan is off!";
+        }
+    }
 
-public class TestFan {
+    // Main method to test the Fan class
     public static void main(String[] args) {
-        // Create the first Fan object (turned off)
-        Fan fan1 = new Fan();
+        // TestFan objects
+        Fan fan1 = new Fan(); // Default fan (off)
+        Fan fan2 = new Fan(Fan.FAST, "white", true); // Custom fan (on)
 
-        // Create the second Fan object (turned on)
-        Fan fan2 = new Fan();
-        fan2.setSpeed(Fan.FAST); // Set speed to fast
-        fan2.setColor("blue"); // Change color to blue
-        fan2.setPower(true); // Turn the fan on
-
-        // Display the attributes of both fans
-        System.out.println(fan1.displayAll()); // Output for fan1 (off)
-        System.out.println(fan2.displayAll()); // Output for fan2 (on)
+        // Display fan details
+        System.out.println(fan1.displayAll());
+        System.out.println(fan2.displayAll());
     }
 }
 
