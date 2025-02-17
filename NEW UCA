@@ -1,0 +1,170 @@
+import java.util.Scanner;
+
+class Converter {
+    // Private fields
+    private double kilometers;
+    private double miles;
+    private double celsius;
+    private double fahrenheit;
+    private double usDollars;
+    private double philippinePesos;
+
+    // Getters and Setters
+    public double getKilometers() {
+        return kilometers;
+    }
+
+    public void setKilometers(double kilometers) {
+        this.kilometers = kilometers;
+    }
+
+    public double getMiles() {
+        return miles;
+    }
+
+    public void setMiles(double miles) {
+        this.miles = miles;
+    }
+
+    public double getCelsius() {
+        return celsius;
+    }
+
+    public void setCelsius(double celsius) {
+        this.celsius = celsius;
+    }
+
+    public double getFahrenheit() {
+        return fahrenheit;
+    }
+
+    public void setFahrenheit(double fahrenheit) {
+        this.fahrenheit = fahrenheit;
+    }
+
+    public double getUsDollars() {
+        return usDollars;
+    }
+
+    public void setUsDollars(double usDollars) {
+        this.usDollars = usDollars;
+    }
+
+    public double getPhilippinePesos() {
+        return philippinePesos;
+    }
+
+    public void setPhilippinePesos(double philippinePesos) {
+        this.philippinePesos = philippinePesos;
+    }
+
+    // Conversion Methods
+
+    public double convertKilometersToMiles() {
+        return kilometers * 0.621371;
+    }
+
+    public double convertMilesToKilometers() {
+        return miles * 1.60934;
+    }
+
+    public double convertCelsiusToFahrenheit() {
+        return (celsius * 9 / 5) + 32;
+    }
+
+    public double convertFahrenheitToCelsius() {
+        return (fahrenheit - 32) * 5 / 9;
+    }
+
+    public double convertUSDollarsToPhilippinePesos() {
+        return usDollars * 56.21;
+    }
+
+    public double convertPhilippinePesosToUSDollars() {
+        return philippinePesos / 56.21;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Converter converter = new Converter();
+        int choice;
+
+        // Menu loop
+        do {
+            System.out.println("----- Unit Converter -----");
+            System.out.println("1. Convert Kilometers to Miles");
+            System.out.println("2. Convert Miles to Kilometers");
+            System.out.println("3. Convert Celsius to Fahrenheit");
+            System.out.println("4. Convert Fahrenheit to Celsius");
+            System.out.println("5. Convert USD to Philippine Pesos");
+            System.out.println("6. Convert Philippine Pesos to USD");
+            System.out.println("7. Exit");
+            System.out.print("Please select a conversion option (1-7): ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter distance in Kilometers: ");
+                    double kilometers = scanner.nextDouble();
+                    converter.setKilometers(kilometers);
+                    double miles = converter.convertKilometersToMiles();
+                    System.out.println("Converted: " + String.format("%.2f", kilometers) + " Kilometers = " + String.format("%.2f", miles) + " Miles");
+                    break;
+
+                case 2:
+                    System.out.print("Enter distance in Miles: ");
+                    double milesInput = scanner.nextDouble();
+                    converter.setMiles(milesInput);
+                    double kilometersOutput = converter.convertMilesToKilometers();
+                    System.out.println("Converted: " + String.format("%.2f", milesInput) + " Miles = " + String.format("%.2f", kilometersOutput) + " Kilometers");
+                    break;
+
+                case 3:
+                    System.out.print("Enter temperature in Celsius: ");
+                    double celsius = scanner.nextDouble();
+                    converter.setCelsius(celsius);
+                    double fahrenheit = converter.convertCelsiusToFahrenheit();
+                    System.out.println("Converted: " + String.format("%.2f", celsius) + " Celsius = " + String.format("%.2f", fahrenheit) + " Fahrenheit");
+                    break;
+
+                case 4:
+                    System.out.print("Enter temperature in Fahrenheit: ");
+                    double fahrenheitInput = scanner.nextDouble();
+                    converter.setFahrenheit(fahrenheitInput);
+                    double celsiusOutput = converter.convertFahrenheitToCelsius();
+                    System.out.println("Converted: " + String.format("%.2f", fahrenheitInput) + " Fahrenheit = " + String.format("%.2f", celsiusOutput) + " Celsius");
+                    break;
+
+                case 5:
+                    System.out.print("Enter amount in USD: ");
+                    double usd = scanner.nextDouble();
+                    converter.setUsDollars(usd);
+                    double pesos = converter.convertUSDollarsToPhilippinePesos();
+                    System.out.println("Converted: " + String.format("%.2f", usd) + " USD = " + String.format("%.2f", pesos) + " Philippine Pesos");
+                    break;
+
+                case 6:
+                    System.out.print("Enter amount in Philippine Pesos: ");
+                    double pesosInput = scanner.nextDouble();
+                    converter.setPhilippinePesos(pesosInput);
+                    double usdOutput = converter.convertPhilippinePesosToUSDollars();
+                    System.out.println("Converted: " + String.format("%.2f", pesosInput) + " Philippine Pesos = " + String.format("%.2f", usdOutput) + " USD");
+                    break;
+
+                case 7:
+                    System.out.println("Exiting the program!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Please select a valid option.");
+            }
+
+            System.out.println();
+
+        } while (choice != 7);
+
+        scanner.close();
+    }
+}
