@@ -1,91 +1,121 @@
-import java.util.Scanner;
-import java.util.Stack;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class StackQueueProgram {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Would you like to use a Stack or a Queue? (Enter 'stack' or 'queue')");
-        String choice = scanner.nextLine().toLowerCase();
+        String choice;
 
-        System.out.print("Enter the size of the array (n): ");
-        int n = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        // Ask for valid input: stack or queue
+        while (true) {
+            System.out.println("Would you like to use a stack or a queue? (Enter 'stack' or 'queue')");
+            choice = scanner.nextLine().toLowerCase();
+            if (choice.equals("stack") || choice.equals("queue")) {
+                break;
+            } else {
+                System.out.println("Invalid input! Please enter 'stack' or 'queue'.");
+            }
+        }
+
+        // Ask for array size
+        int n;
+        while (true) {
+            System.out.println("Enter the size of the array (positive integer):");
+            if (scanner.hasNextInt()) {
+                n = scanner.nextInt();
+                if (n > 0) {
+                    break;
+                } else {
+                    System.out.println("Invalid input! Array size must be a positive integer.");
+                }
+            } else {
+                System.out.println("Invalid input! Please enter a valid integer.");
+                scanner.next(); // Clear invalid input
+            }
+        }
 
         if (choice.equals("stack")) {
             Stack<Integer> stack = new Stack<>();
             while (true) {
-                System.out.println("Choose an operation: push or pop");
-                String operation = scanner.nextLine().toLowerCase();
+                System.out.println("Would you like to push or pop? (Enter 'push' or 'pop')");
+                String operation = scanner.next().toLowerCase();
 
                 if (operation.equals("push")) {
                     if (stack.size() < n) {
-                        System.out.print("Enter an integer to push: ");
-                        int value = scanner.nextInt();
-                        scanner.nextLine(); // Consume the newline character
-                        stack.push(value);
-                        System.out.println("Pushed " + value + " to the stack.");
+                        System.out.println("Enter an integer value to push:");
+                        if (scanner.hasNextInt()) {
+                            int value = scanner.nextInt();
+                            stack.push(value);
+                            System.out.println("Pushed " + value + " into the stack.");
+                        } else {
+                            System.out.println("Invalid input! Please enter a valid integer.");
+                            scanner.next(); // Clear invalid input
+                        }
                     } else {
-                        System.out.println("Stack is full. Cannot push more elements.");
+                        System.out.println("Stack is full! Cannot push more elements.");
                     }
                 } else if (operation.equals("pop")) {
                     if (!stack.isEmpty()) {
-                        int popped = stack.pop();
-                        System.out.println("Popped " + popped + " from the stack.");
+                        int poppedValue = stack.pop();
+                        System.out.println("Popped " + poppedValue + " from the stack.");
                     } else {
-                        System.out.println("Stack is empty. Cannot pop elements.");
+                        System.out.println("Stack is empty! Nothing to pop.");
                     }
                 } else {
-                    System.out.println("Invalid operation. Please choose 'push' or 'pop'.");
+                    System.out.println("Invalid operation! Please enter 'push' or 'pop'.");
+                    continue;
                 }
 
-                System.out.println("Do you want to continue or end? (Enter 'continue' or 'end')");
-                String decision = scanner.nextLine().toLowerCase();
-                if (decision.equals("end")) {
-                    System.out.println("Final Stack: " + stack);
+                System.out.println("Would you like to continue or end? (Enter 'continue' or 'end')");
+                String continueOrEnd = scanner.next().toLowerCase();
+                if (continueOrEnd.equals("end")) {
+                    System.out.println("Final stack: " + stack);
                     break;
+                } else if (!continueOrEnd.equals("continue")) {
+                    System.out.println("Invalid input! Please enter 'continue' or 'end'.");
                 }
             }
         } else if (choice.equals("queue")) {
             Queue<Integer> queue = new LinkedList<>();
             while (true) {
-                System.out.println("Choose an operation: enqueue or dequeue");
-                String operation = scanner.nextLine().toLowerCase();
+                System.out.println("Would you like to enqueue or dequeue? (Enter 'enqueue' or 'dequeue')");
+                String operation = scanner.next().toLowerCase();
 
                 if (operation.equals("enqueue")) {
                     if (queue.size() < n) {
-                        System.out.print("Enter an integer to enqueue: ");
-                        int value = scanner.nextInt();
-                        scanner.nextLine(); // Consume the newline character
-                        queue.add(value);
-                        System.out.println("Enqueued " + value + " to the queue.");
+                        System.out.println("Enter an integer value to enqueue:");
+                        if (scanner.hasNextInt()) {
+                            int value = scanner.nextInt();
+                            queue.add(value);
+                            System.out.println("Enqueued " + value + " into the queue.");
+                        } else {
+                            System.out.println("Invalid input! Please enter a valid integer.");
+                            scanner.next(); // Clear invalid input
+                        }
                     } else {
-                        System.out.println("Queue is full. Cannot enqueue more elements.");
+                        System.out.println("Queue is full! Cannot enqueue more elements.");
                     }
                 } else if (operation.equals("dequeue")) {
                     if (!queue.isEmpty()) {
-                        int dequeued = queue.poll();
-                        System.out.println("Dequeued " + dequeued + " from the queue.");
+                        int dequeuedValue = queue.poll();
+                        System.out.println("Dequeued " + dequeuedValue + " from the queue.");
                     } else {
-                        System.out.println("Queue is empty. Cannot dequeue elements.");
+                        System.out.println("Queue is empty! Nothing to dequeue.");
                     }
                 } else {
-                    System.out.println("Invalid operation. Please choose 'enqueue' or 'dequeue'.");
+                    System.out.println("Invalid operation! Please enter 'enqueue' or 'dequeue'.");
+                    continue;
                 }
 
-                System.out.println("Do you want to continue or end? (Enter 'continue' or 'end')");
-                String decision = scanner.nextLine().toLowerCase();
-                if (decision.equals("end")) {
-                    System.out.println("Final Queue: " + queue);
+                System.out.println("Would you like to continue or end? (Enter 'continue' or 'end')");
+                String continueOrEnd = scanner.next().toLowerCase();
+                if (continueOrEnd.equals("end")) {
+                    System.out.println("Final queue: " + queue);
                     break;
+                } else if (!continueOrEnd.equals("continue")) {
+                    System.out.println("Invalid input! Please enter 'continue' or 'end'.");
                 }
             }
-        } else {
-            System.out.println("Invalid choice. Please restart and choose 'stack' or 'queue'.");
         }
-
         scanner.close();
     }
 }
