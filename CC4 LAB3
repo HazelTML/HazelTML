@@ -32,33 +32,49 @@ public class StackQueueProgram {
                 scanner.next(); // Clear invalid input
             }
         }
+        scanner.nextLine(); // Consume leftover newline
 
         if (choice.equals("stack")) {
             Stack<Integer> stack = new Stack<>();
             while (true) {
                 System.out.println("Would you like to push or pop? (Enter 'push' or 'pop')");
-                String operation = scanner.next().toLowerCase();
+                String operation = scanner.nextLine().toLowerCase();
 
                 if (operation.equals("push")) {
-                    if (stack.size() < n) {
-                        System.out.println("Enter an integer value to push:");
-                        if (scanner.hasNextInt()) {
-                            int value = scanner.nextInt();
-                            stack.push(value);
-                            System.out.println("Pushed " + value + " into the stack.");
-                        } else {
-                            System.out.println("Invalid input! Please enter a valid integer.");
-                            scanner.next(); // Clear invalid input
+                    System.out.println("Enter integers to push, separated by commas:");
+                    String input = scanner.nextLine();
+                    String[] numbers = input.split(",");
+                    for (String num : numbers) {
+                        try {
+                            if (stack.size() < n) {
+                                int value = Integer.parseInt(num.trim());
+                                stack.push(value);
+                                System.out.println("Pushed " + value + " into the stack.");
+                            } else {
+                                System.out.println("Stack is full! Cannot push more elements.");
+                                break;
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input '" + num.trim() + "'. Please enter valid integers.");
                         }
-                    } else {
-                        System.out.println("Stack is full! Cannot push more elements.");
                     }
                 } else if (operation.equals("pop")) {
-                    if (!stack.isEmpty()) {
-                        int poppedValue = stack.pop();
-                        System.out.println("Popped " + poppedValue + " from the stack.");
+                    System.out.println("How many elements would you like to pop?");
+                    if (scanner.hasNextInt()) {
+                        int pops = scanner.nextInt();
+                        scanner.nextLine(); // Consume leftover newline
+                        for (int i = 0; i < pops; i++) {
+                            if (!stack.isEmpty()) {
+                                int poppedValue = stack.pop();
+                                System.out.println("Popped " + poppedValue + " from the stack.");
+                            } else {
+                                System.out.println("Stack is empty! Nothing to pop.");
+                                break;
+                            }
+                        }
                     } else {
-                        System.out.println("Stack is empty! Nothing to pop.");
+                        System.out.println("Invalid input! Please enter a valid number.");
+                        scanner.next(); // Clear invalid input
                     }
                 } else {
                     System.out.println("Invalid operation! Please enter 'push' or 'pop'.");
@@ -66,7 +82,7 @@ public class StackQueueProgram {
                 }
 
                 System.out.println("Would you like to continue or end? (Enter 'continue' or 'end')");
-                String continueOrEnd = scanner.next().toLowerCase();
+                String continueOrEnd = scanner.nextLine().toLowerCase();
                 if (continueOrEnd.equals("end")) {
                     System.out.println("Final stack: " + stack);
                     break;
@@ -78,28 +94,43 @@ public class StackQueueProgram {
             Queue<Integer> queue = new LinkedList<>();
             while (true) {
                 System.out.println("Would you like to enqueue or dequeue? (Enter 'enqueue' or 'dequeue')");
-                String operation = scanner.next().toLowerCase();
+                String operation = scanner.nextLine().toLowerCase();
 
                 if (operation.equals("enqueue")) {
-                    if (queue.size() < n) {
-                        System.out.println("Enter an integer value to enqueue:");
-                        if (scanner.hasNextInt()) {
-                            int value = scanner.nextInt();
-                            queue.add(value);
-                            System.out.println("Enqueued " + value + " into the queue.");
-                        } else {
-                            System.out.println("Invalid input! Please enter a valid integer.");
-                            scanner.next(); // Clear invalid input
+                    System.out.println("Enter integers to enqueue, separated by commas:");
+                    String input = scanner.nextLine();
+                    String[] numbers = input.split(",");
+                    for (String num : numbers) {
+                        try {
+                            if (queue.size() < n) {
+                                int value = Integer.parseInt(num.trim());
+                                queue.add(value);
+                                System.out.println("Enqueued " + value + " into the queue.");
+                            } else {
+                                System.out.println("Queue is full! Cannot enqueue more elements.");
+                                break;
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input '" + num.trim() + "'. Please enter valid integers.");
                         }
-                    } else {
-                        System.out.println("Queue is full! Cannot enqueue more elements.");
                     }
                 } else if (operation.equals("dequeue")) {
-                    if (!queue.isEmpty()) {
-                        int dequeuedValue = queue.poll();
-                        System.out.println("Dequeued " + dequeuedValue + " from the queue.");
+                    System.out.println("How many elements would you like to dequeue?");
+                    if (scanner.hasNextInt()) {
+                        int dequeues = scanner.nextInt();
+                        scanner.nextLine(); // Consume leftover newline
+                        for (int i = 0; i < dequeues; i++) {
+                            if (!queue.isEmpty()) {
+                                int dequeuedValue = queue.poll();
+                                System.out.println("Dequeued " + dequeuedValue + " from the queue.");
+                            } else {
+                                System.out.println("Queue is empty! Nothing to dequeue.");
+                                break;
+                            }
+                        }
                     } else {
-                        System.out.println("Queue is empty! Nothing to dequeue.");
+                        System.out.println("Invalid input! Please enter a valid number.");
+                        scanner.next(); // Clear invalid input
                     }
                 } else {
                     System.out.println("Invalid operation! Please enter 'enqueue' or 'dequeue'.");
@@ -107,7 +138,7 @@ public class StackQueueProgram {
                 }
 
                 System.out.println("Would you like to continue or end? (Enter 'continue' or 'end')");
-                String continueOrEnd = scanner.next().toLowerCase();
+                String continueOrEnd = scanner.nextLine().toLowerCase();
                 if (continueOrEnd.equals("end")) {
                     System.out.println("Final queue: " + queue);
                     break;
