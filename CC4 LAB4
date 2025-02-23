@@ -1,0 +1,112 @@
+import java.util.*;
+
+public class ExpressionConverter {
+
+    // Method to check precedence of operators
+    private static int precedence(char ch) {
+        if (ch == '+' || ch == '-') {
+            return 1;
+        } else if (ch == '*' || ch == '/') {
+            return 2;
+        } else {
+            return 0;
+        }
+    }
+
+    // Method to check if the character is an operand (number or variable)
+    private static boolean isOperand(char ch) {
+        return Character.isLetterOrDigit(ch);
+    }
+
+    // Method to convert infix expression to postfix
+    private static String infixToPostfix(String infix) {
+        Stack<Character> stack = new Stack<>();
+        StringBuilder postfix = new StringBuilder();
+
+        for (int i = 0; i < infix.length(); i++) {
+            char currentChar = infix.charAt(i);
+
+            if (isOperand(currentChar)) {
+                postfix.append(currentChar);
+            } else if (currentChar == '(') {
+                stack.push(currentChar);
+            } else if (currentChar == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    postfix.append(stack.pop());
+                }
+                stack.pop(); // Pop the '('
+            } else { // Operator
+                while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(currentChar)) {
+                    postfix.append(stack.pop());
+                }
+                stack.push(currentChar);
+            }
+        }
+
+        // Pop all remaining operators from the stack
+        while (!stack.isEmpty()) {
+            postfix.append(stack.pop());
+        }
+
+        return postfix.toString();
+    }
+
+    // Method to reverse a string
+    private static String reverse(String str) {
+        return new StringBuilder(str).reverse().toString();
+    }
+
+    // Method to convert infix expression to prefix
+    private static String infixToPrefix(String infix) {
+        // Reverse the infix expression
+        String reversedInfix = reverse(infix);
+
+        // Reverse parentheses as well
+        StringBuilder infixWithReversedParentheses = new StringBuilder();
+        for (char c : reversedInfix.toCharArray()) {
+            if (c == '(') {
+                infixWithReversedParentheses.append(')');
+            } else if (c == ')') {
+                infixWithReversedParentheses.append('(');
+            } else {
+                infixWithReversedParentheses.append(c);
+            }
+        }
+
+        // Convert the reversed infix to postfix
+        String postfix = infixToPostfix(infixWithReversedParentheses.toString());
+
+        // Reverse the postfix to get the prefix
+        return reverse(postfix);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean continueProgram = true;
+
+        while (continueProgram) {
+            // Input the infix expression
+            System.out.print("Enter infix: ");
+            String infix = scanner.nextLine();
+
+            // Convert infix to postfix and prefix
+            String postfix = infixToPostfix(infix);
+            String prefix = infixToPrefix(infix);
+
+            // Display the result
+            System.out.println("Prefix is: " + prefix);
+            System.out.println("Postfix is: " + postfix);
+
+            // Ask the user if they want to continue or close the terminal
+            System.out.print("Do you want to enter another expression? (yes/no): ");
+            String userResponse = scanner.nextLine();
+
+            if (userResponse.equalsIgnoreCase("no")) {
+                continueProgram = false; // Exit the loop and close the program
+                System.out.println("Goodbye!");
+            }
+        }
+
+        scanner.close(); // Close the scanner
+    }
+}
