@@ -2,23 +2,32 @@ import java.util.*;
 
 public class ExpressionConverter {
 
-    // Method to check precedence of operators
     private static int precedence(char ch) {
-        if (ch == '+' || ch == '-') {
-            return 1;
-        } else if (ch == '*' || ch == '/') {
-            return 2;
-        } else {
-            return 0;
-        }
+        if (ch == '^') return 3;
+        else if (ch == '*' || ch == '/' || ch == '%') return 2;
+        else if (ch == '+' || ch == '-') return 1;
+        else return 0;
     }
 
-    // Method to check if the character is an operand (number or variable)
+    private static boolean isRightAssociative(char ch) {
+        return ch == '^';
+    }
+
     private static boolean isOperand(char ch) {
         return Character.isLetterOrDigit(ch);
     }
 
-    // Method to convert infix expression to postfix
+    private static boolean isBalanced(String expression) {
+        Stack<Character> stack = new Stack<>();
+        for (char ch : expression.toCharArray()) {
+            if (ch == '(') stack.push(ch);
+            else if (ch == ')') {
+                if (stack.isEmpty() || stack.pop() != '(') return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+
     private static String infixToPostfix(String infix) {
         Stack<Character> stack = new Stack<>();
         StringBuilder postfix = new StringBuilder();
@@ -34,16 +43,17 @@ public class ExpressionConverter {
                 while (!stack.isEmpty() && stack.peek() != '(') {
                     postfix.append(stack.pop());
                 }
-                stack.pop(); // Pop the '('
-            } else { // Operator
-                while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(currentChar)) {
+                stack.pop();
+            } else {
+                while (!stack.isEmpty() &&
+                       (precedence(stack.peek()) > precedence(currentChar) ||
+                        (precedence(stack.peek()) == precedence(currentChar) && !isRightAssociative(currentChar)))) {
                     postfix.append(stack.pop());
                 }
                 stack.push(currentChar);
             }
         }
 
-        // Pop all remaining operators from the stack
         while (!stack.isEmpty()) {
             postfix.append(stack.pop());
         }
@@ -51,62 +61,52 @@ public class ExpressionConverter {
         return postfix.toString();
     }
 
-    // Method to reverse a string
     private static String reverse(String str) {
         return new StringBuilder(str).reverse().toString();
     }
 
-    // Method to convert infix expression to prefix
     private static String infixToPrefix(String infix) {
-        // Reverse the infix expression
         String reversedInfix = reverse(infix);
 
-        // Reverse parentheses as well
         StringBuilder infixWithReversedParentheses = new StringBuilder();
         for (char c : reversedInfix.toCharArray()) {
-            if (c == '(') {
-                infixWithReversedParentheses.append(')');
-            } else if (c == ')') {
-                infixWithReversedParentheses.append('(');
-            } else {
-                infixWithReversedParentheses.append(c);
-            }
+            if (c == '(') infixWithReversedParentheses.append(')');
+            else if (c == ')') infixWithReversedParentheses.append('(');
+            else infixWithReversedParentheses.append(c);
         }
 
-        // Convert the reversed infix to postfix
         String postfix = infixToPostfix(infixWithReversedParentheses.toString());
-
-        // Reverse the postfix to get the prefix
         return reverse(postfix);
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean continueProgram = true;
 
-        while (continueProgram) {
-            // Input the infix expression
-            System.out.print("Enter infix: ");
-            String infix = scanner.nextLine();
+        while (true) {
+            try {
+                System.out.print("Enter infix: ");
+                String infix = scanner.nextLine().replaceAll("\\s+", "");
 
-            // Convert infix to postfix and prefix
-            String postfix = infixToPostfix(infix);
-            String prefix = infixToPrefix(infix);
+                if (!isBalanced(infix)) {
+                    throw new IllegalArgumentException("Unbalanced parentheses.");
+                }
 
-            // Display the result
-            System.out.println("Prefix is: " + prefix);
-            System.out.println("Postfix is: " + postfix);
+                String postfix = infixToPostfix(infix);
+                String prefix = infixToPrefix(infix);
 
-            // Ask the user if they want to continue or close the terminal
-            System.out.print("Do you want to enter another expression? (yes/no): ");
-            String userResponse = scanner.nextLine();
+                System.out.println("Prefix: " + prefix);
+                System.out.println("Postfix: " + postfix);
 
-            if (userResponse.equalsIgnoreCase("no")) {
-                continueProgram = false; // Exit the loop and close the program
-                System.out.println("Goodbye!");
+                System.out.print("Do you want to enter another expression? (yes/no): ");
+                if (scanner.nextLine().equalsIgnoreCase("no")) {
+                    System.out.println("Goodbye!");
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
             }
         }
 
-        scanner.close(); // Close the scanner
+        scanner.close();
     }
 }
