@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class TreeArrayProgram {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Ask user for inputs
+        System.out.print("Enter the size of the tree (n): ");
+        int n = scanner.nextInt();
+        System.out.print("Enter the starting value of the tree: ");
+        int start = scanner.nextInt();
+
+        // Create and populate the Tree array
+        int[] Tree = new int[n];
+        Tree[0] = start;
+        for (int i = 1; i < n; i++) {
+            Tree[i] = Tree[i - 1] + 1;
+        }
+
+        // Print the array Tree
+        System.out.print("Tree array: ");
+        for (int value : Tree) {
+            System.out.print(value + " ");
+        }
+        System.out.println();
+
+        // Ask user for choice
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+
+        // Check if the choice is valid
+        boolean isValidChoice = false;
+        for (int value : Tree) {
+            if (value == choice) {
+                isValidChoice = true;
+                break;
+            }
+        }
+
+        if (!isValidChoice) {
+            System.out.println("Invalid");
+        } else {
+            System.out.println("Choice is now the tree root: " + choice);
+
+            // Print the updated Tree array with choice as the root
+            System.out.print("Updated Tree array: ");
+            for (int value : Tree) {
+                if (value == choice) {
+                    System.out.print(value + " ");
+                    break;
+                }
+            }
+            for (int value : Tree) {
+                if (value != choice) {
+                    System.out.print(value + " ");
+                }
+            }
+            System.out.println();
+        }
+
+        scanner.close();
+    }
+}
