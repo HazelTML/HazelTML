@@ -1,0 +1,16 @@
+1. State 20 characteristics (Physical, Psychological or even objects) that you inherited from your parents.
+
+Physical inheritance: Hair color, eye color, skin tone, height, nose shape
+Psychological interitance: Cognitive ability, sense of humor, bad tempered, perseverace, resilience
+Skills inheritance: Cooking skills, craftsmanship, dancing skills, adaptability, problem-solving 
+Objects inheritance: Clothing, jewelry, family home, family recipes, land
+
+2. When you inherit something, does it have to be all the attributes on the parent class? Explain in atleast 5 sentences and give out 1 example.
+
+No, when a class inherits from a parent class, it does not have to utilize all the attributes of the parent class. In inheritance, the child class automatically has access to the attributes and methods of the parent class, but it can choose to override, extend, or ignore them depending on the requirements. The child class can also add new attributes or methods that are unique to itself. This allows for flexibility and ensures that the child class is only as complex as necessary while still benefiting from the reusable features of the parent class. 
+
+For instance, if you inherit a family business, you might take ownership of the company but choose to ignore or modernize outdated traditions or practices associated with it. 
+
+4. Explain the relationship between these entities and the properties or behavior they can inherit.
+
+The diagram shows an inheritance hierarchy where Publication is the parent class, and Book and Magazine are child classes. The parent class, Publication, contains general properties like Title, Price, and Copies and a method SellCopy() that applies to all publications. The child classes inherit these attributes and behaviors but also add their own unique features. The Book class introduces the Author property and the OrderCopies() method, while the Magazine class adds properties like OrderQty and CurrIssue, along with methods such as AdjustQty() and RecNewIssue(). This relationship illustrates how inheritance allows shared attributes to be defined in a base class for reusability, while specific subclasses extend or customize the functionality for their unique purposes.
