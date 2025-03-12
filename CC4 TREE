@@ -62,57 +62,28 @@ public class TreeArrayProgram {
     }
 }
 
-Here’s a refined explanation for a 3-5 minute video presentation:
+Here is a brief explanation of my code and demonstrating its execution using my own input values. 
 
-Introduction
+The program begins by asking the user for two inputs:
 
-“Welcome to our presentation on a Java program that creates and manipulates a tree-like array. Today, we’ll walk you through how the program works, step by step. The program takes user inputs to build an array, validates a user-selected value, and updates the array based on the selection. Let’s dive in!”
+First is the size of the tree which is (n), this determines how many elements the array will have.
+Second is the starting value or the first element in the array, and each subsequent element increments by 1 until the array is full.
 
-Step 1: Inputs from the User
+In our case, if the user inputs n as 5 and starting value as 10, the tree array will contain be [10, 11, 12, 13, 14], named Tree.
 
-“The program begins by asking the user for two inputs:
-	1.	The size of the tree (n): This determines how many elements the array will have.
-	2.	The starting value (start): This is the first number in the array, and each subsequent element increments by 1.
-
-For example, if the user inputs n = 5 and start = 10, the tree array will contain: [10, 11, 12, 13, 14].”
-
-Step 2: Creating the Tree Array
-
-“Using the inputs, the program creates a one-dimensional array named Tree.
-	•	The first element is set to the starting value.
-	•	Each subsequent element increases by 1 until the array is full.
 The program then displays this array to the user.
 
-Example Output:
-For n = 5 and start = 10, the program displays: [10, 11, 12, 13, 14].”
+After which, the program will ask the user to select a value from the array, called choice.
 
-Step 3: User Choice and Validation
+If the user’s choice is not in the array, the program displays ‘Invalid’.
+Otherwise, if the choice is valid, the program recognizes it as the new root of the tree.
 
-“Next, the user is asked to select a value from the array, called choice.
-	•	If the user’s choice is not in the array, the program displays: ‘Invalid’.
-	•	If the choice is valid, the program recognizes it as the new root of the tree.
+This ensures the user cannot select a value outside the valid range of the array.
 
-This ensures the user cannot select a value outside the valid range of the array.”
+If the user’s choice is valid, the program updates the tree by marking the chosen value as the root.
 
-Step 4: Updating the Tree Structure
+For example, if the user selects 12 from the array, the program highlights 12 as the root. The updated output will be [12, 10, 11, 13, 14].
 
-“If the user’s choice is valid, the program updates the tree by marking the chosen value as the root.
+This gives users the flexibility to manipulate the tree dynamically.
 
-For example:
-If the array is [10, 11, 12, 13, 14] and the user selects 12, the program highlights 12 as the root. The updated output could look like: [12, 10, 11, 13, 14].”
-
-Step 5: Program Output
-
-“Finally, the program prints the updated tree array.
-	•	If the choice is invalid, it simply outputs ‘Invalid’.
-	•	If the choice is valid, it reorders the array and shows the updated structure.
-
-This gives users the flexibility to manipulate the tree dynamically.”
-
-Conclusion
-
-“In summary, this program demonstrates how we can use Java to build and manipulate data structures based on user inputs. It combines fundamental concepts like arrays, user input validation, and dynamic updates. This makes it a practical example of how to manage and present data interactively.
-
-Thank you for watching!”
-
-This explanation will fit comfortably within a 3-5 minute window and is engaging for a video presentation. You can also add visuals like diagrams or sample outputs to enhance clarity.
+In summary, this program demonstrates how we can use Java to build and manipulate data structures based on user inputs. It combines fundamental concepts like arrays, user input validation, and dynamic updates. This makes it a practical example of how to manage and present data interactively.
