@@ -1,0 +1,168 @@
+import java.util.Scanner;
+
+// Node class for the AVL Tree (now accepts String data)
+class Node {
+    String data;
+    Node left, right;
+    int height;
+
+    public Node(String data) {
+        this.data = data;
+        this.height = 1; // Initially the height is 1
+    }
+}
+
+// AVL Tree class
+class AVLTree {
+    private Node root;
+
+    // Get height of node
+    private int height(Node node) {
+        return node == null ? 0 : node.height;
+    }
+
+    // Get balance factor of node
+    private int balanceFactor(Node node) {
+        return node == null ? 0 : height(node.left) - height(node.right);
+    }
+
+    // Right rotation
+    private Node rightRotate(Node y) {
+        Node x = y.left;
+        Node T2 = x.right;
+
+        // Perform rotation
+        x.right = y;
+        y.left = T2;
+
+        // Update heights
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+
+        return x; // New root
+    }
+
+    // Left rotation
+    private Node leftRotate(Node x) {
+        Node y = x.right;
+        Node T2 = y.left;
+
+        // Perform rotation
+        y.left = x;
+        x.right = T2;
+
+        // Update heights
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+
+        return y; // New root
+    }
+
+    // Left-Right rotation
+    private Node leftRightRotate(Node node) {
+        node.left = leftRotate(node.left);
+        return rightRotate(node);
+    }
+
+    // Right-Left rotation
+    private Node rightLeftRotate(Node node) {
+        node.right = rightRotate(node.right);
+        return leftRotate(node);
+    }
+
+    // Insert a new node and balance the tree
+    public Node insert(Node node, String data) {
+        if (node == null) {
+            return new Node(data);
+        }
+
+        // 1. Perform normal BST insertion
+        if (data.compareTo(node.data) < 0) {
+            node.left = insert(node.left, data);
+        } else if (data.compareTo(node.data) > 0) {
+            node.right = insert(node.right, data);
+        } else { // Duplicates are not allowed
+            return node;
+        }
+
+        // 2. Update height of this ancestor node
+        node.height = Math.max(height(node.left), height(node.right)) + 1;
+
+        // 3. Get the balance factor to check whether this node became unbalanced
+        int balance = balanceFactor(node);
+
+        // If this node becomes unbalanced, then there are 4 cases
+
+        // Left Left Case
+        if (balance > 1 && data.compareTo(node.left.data) < 0) {
+            return rightRotate(node);
+        }
+
+        // Right Right Case
+        if (balance < -1 && data.compareTo(node.right.data) > 0) {
+            return leftRotate(node);
+        }
+
+        // Left Right Case
+        if (balance > 1 && data.compareTo(node.left.data) > 0) {
+            return leftRightRotate(node);
+        }
+
+        // Right Left Case
+        if (balance < -1 && data.compareTo(node.right.data) < 0) {
+            return rightLeftRotate(node);
+        }
+
+        return node; // return the (unchanged) node pointer
+    }
+
+    // Print preorder traversal of the tree
+    public void preorder(Node node) {
+        if (node != null) {
+            System.out.print(node.data + " ");
+            preorder(node.left);
+            preorder(node.right);
+        }
+    }
+
+    // Helper function to start inserting at the root
+    public void insert(String data) {
+        root = insert(root, data);
+    }
+
+    // Helper function to print preorder starting from the root
+    public void preorder() {
+        preorder(root);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        AVLTree tree = new AVLTree();
+
+        while (true) {
+            System.out.println("\nEnter 'In' to insert values or 'End' to print preorder traversal:");
+            String command = scanner.nextLine();
+
+            if (command.equalsIgnoreCase("In")) {
+                System.out.print("Enter values (number or letter), separated by spaces: ");
+                String input = scanner.nextLine();
+                String[] values = input.split("\\s+"); // Split the input by spaces
+
+                // Insert all values into the tree
+                for (String value : values) {
+                    tree.insert(value);
+                }
+            } else if (command.equalsIgnoreCase("End")) {
+                System.out.println("Preorder traversal of the AVL tree:");
+                tree.preorder();
+                break;
+            } else {
+                System.out.println("Invalid command. Please enter 'In' or 'End'.");
+            }
+        }
+
+        scanner.close();
+    }
+}
