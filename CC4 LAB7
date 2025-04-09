@@ -1,0 +1,127 @@
+import java.util.*;
+
+public class GraphTraversal {
+    private Map<String, List<String>> adjacencyList;
+
+    public GraphTraversal() {
+        adjacencyList = new HashMap<>();
+    }
+
+    // Add a vertex to the graph
+    public void addVertex(String vertex) {
+        adjacencyList.putIfAbsent(vertex, new ArrayList<>());
+    }
+
+    // Add an edge to the graph
+    public void addEdge(String vertex1, String vertex2) {
+        adjacencyList.get(vertex1).add(vertex2);
+        adjacencyList.get(vertex2).add(vertex1); // For undirected graph
+    }
+
+    // BFS Traversal
+    public void bfs(String startVertex) {
+        Queue<String> queue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+
+        queue.add(startVertex);
+        visited.add(startVertex);
+
+        System.out.println("BFS Traversal:");
+        while (!queue.isEmpty()) {
+            String current = queue.poll();
+            System.out.print(current + " ");
+
+            for (String neighbor : adjacencyList.getOrDefault(current, new ArrayList<>())) {
+                if (!visited.contains(neighbor)) {
+                    queue.add(neighbor);
+                    visited.add(neighbor);
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    // DFS Traversal
+    public void dfs(String startVertex) {
+        Stack<String> stack = new Stack<>();
+        Set<String> visited = new HashSet<>();
+
+        stack.push(startVertex);
+
+        System.out.println("DFS Traversal:");
+        while (!stack.isEmpty()) {
+            String current = stack.pop();
+
+            if (!visited.contains(current)) {
+                System.out.print(current + " ");
+                visited.add(current);
+
+                for (String neighbor : adjacencyList.getOrDefault(current, new ArrayList<>())) {
+                    if (!visited.contains(neighbor)) {
+                        stack.push(neighbor);
+                    }
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        GraphTraversal graph = new GraphTraversal();
+
+        System.out.println("Graph Traversal Program");
+
+        // Input nodes
+        System.out.println("Enter all nodes separated by space:");
+        String[] nodes = scanner.nextLine().trim().split("\\s+");
+        for (String node : nodes) {
+            if (!node.isEmpty()) {
+                graph.addVertex(node);
+            }
+        }
+
+        // Input edges
+        System.out.println("Enter edges ('node1-node2'). Type 'done' when finished:");
+        while (true) {
+            System.out.print("Edge: ");
+            String input = scanner.nextLine().trim();
+            if (input.equalsIgnoreCase("done")) break;
+
+            String[] nodesInEdge = input.split("-");
+            if (nodesInEdge.length == 2 &&
+                graph.adjacencyList.containsKey(nodesInEdge[0]) &&
+                graph.adjacencyList.containsKey(nodesInEdge[1])) {
+                graph.addEdge(nodesInEdge[0], nodesInEdge[1]);
+            } else {
+                System.out.println("Invalid edge or nodes not found. Skipping edge: " + input);
+            }
+        }
+
+        // Input starting node
+        System.out.print("Enter starting node: ");
+        String startNode = scanner.nextLine().trim();
+        if (!graph.adjacencyList.containsKey(startNode)) {
+            System.out.println("Starting node not found in the graph.");
+            return;
+        }
+
+        // Choose traversal method
+        System.out.print("Choose traversal method (BFS/DFS): ");
+        String method = scanner.nextLine().trim().toUpperCase();
+
+        switch (method) {
+            case "BFS":
+                graph.bfs(startNode);
+                break;
+            case "DFS":
+                graph.dfs(startNode);
+                break;
+            default:
+                System.out.println("Invalid method. Please choose BFS or DFS.");
+        }
+
+        scanner.close();
+    }
+}
