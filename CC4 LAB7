@@ -73,6 +73,10 @@ public class GraphTraversal {
 
         System.out.println("Graph Traversal Program");
 
+        // Input number of nodes
+        System.out.print("Enter the number of nodes: ");
+        int numberOfNodes = Integer.parseInt(scanner.nextLine().trim());
+
         // Input nodes
         System.out.println("Enter all nodes separated by space:");
         String[] nodes = scanner.nextLine().trim().split("\\s+");
@@ -82,12 +86,15 @@ public class GraphTraversal {
             }
         }
 
+        // Input number of edges
+        System.out.print("Enter the number of edges: ");
+        int numberOfEdges = Integer.parseInt(scanner.nextLine().trim());
+
         // Input edges
-        System.out.println("Enter edges ('node1-node2'). Type 'done' when finished:");
-        while (true) {
-            System.out.print("Edge: ");
+        System.out.println("Enter edges ('node1-node2'):");
+        for (int i = 0; i < numberOfEdges; i++) {
+            System.out.print("Edge " + (i + 1) + ": ");
             String input = scanner.nextLine().trim();
-            if (input.equalsIgnoreCase("done")) break;
 
             String[] nodesInEdge = input.split("-");
             if (nodesInEdge.length == 2 &&
@@ -96,6 +103,7 @@ public class GraphTraversal {
                 graph.addEdge(nodesInEdge[0], nodesInEdge[1]);
             } else {
                 System.out.println("Invalid edge or nodes not found. Skipping edge: " + input);
+                i--; // Decrement to repeat this iteration
             }
         }
 
