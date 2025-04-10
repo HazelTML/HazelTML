@@ -107,18 +107,26 @@ public class GraphTraversal {
             }
         }
 
-        // Input starting node
-        System.out.print("Enter starting node: ");
-        String startNode = scanner.nextLine().trim();
-        if (!graph.adjacencyList.containsKey(startNode)) {
-            System.out.println("Starting node not found in the graph.");
-            return;
-        }
-
         // Choose traversal method
         System.out.print("Choose traversal method (BFS/DFS): ");
         String method = scanner.nextLine().trim().toUpperCase();
 
+        // Ask user whether to start from highest or lowest value
+        System.out.print("Do you want to start from the highest or lowest value? (H/L): ");
+        String startChoice = scanner.nextLine().trim().toUpperCase();
+
+        // Determine starting node based on user choice
+        String startNode;
+        if (startChoice.equals("H")) {
+            startNode = Collections.max(graph.adjacencyList.keySet());
+        } else if (startChoice.equals("L")) {
+            startNode = Collections.min(graph.adjacencyList.keySet());
+        } else {
+            System.out.println("Invalid choice. Please choose H for highest or L for lowest.");
+            return;
+        }
+
+        // Perform the chosen traversal
         switch (method) {
             case "BFS":
                 graph.bfs(startNode);
@@ -132,4 +140,4 @@ public class GraphTraversal {
 
         scanner.close();
     }
-}
+    }
