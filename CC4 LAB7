@@ -7,63 +7,76 @@ public class GraphTraversal {
         adjacencyList = new HashMap<>();
     }
 
-    // Add a vertex to the graph
+    // Add a vertex
     public void addVertex(String vertex) {
         adjacencyList.putIfAbsent(vertex, new ArrayList<>());
     }
 
-    // Add an edge to the graph
+    // Add an edge
     public void addEdge(String vertex1, String vertex2) {
         adjacencyList.get(vertex1).add(vertex2);
-        adjacencyList.get(vertex2).add(vertex1); // For undirected graph
+        adjacencyList.get(vertex2).add(vertex1); // Undirected
     }
 
     // BFS Traversal
-    public void bfs(String startVertex) {
+    public void bfs(String startVertex, boolean highToLow) {
         Queue<String> queue = new LinkedList<>();
         Set<String> visited = new HashSet<>();
+        List<String> result = new ArrayList<>();
 
         queue.add(startVertex);
         visited.add(startVertex);
 
-        System.out.println("BFS Traversal:");
+        System.out.println("BFS Traversal (using Queue):");
         while (!queue.isEmpty()) {
+            System.out.println("Queue: " + queue);
             String current = queue.poll();
-            System.out.print(current + " ");
+            result.add(current);
 
-            for (String neighbor : adjacencyList.getOrDefault(current, new ArrayList<>())) {
+            List<String> neighbors = new ArrayList<>(adjacencyList.getOrDefault(current, new ArrayList<>()));
+            neighbors.sort(highToLow ? Comparator.reverseOrder() : Comparator.naturalOrder());
+
+            for (String neighbor : neighbors) {
                 if (!visited.contains(neighbor)) {
                     queue.add(neighbor);
                     visited.add(neighbor);
                 }
             }
         }
-        System.out.println();
+
+        System.out.println("Final BFS Traversal: " + String.join(" ", result));
     }
 
     // DFS Traversal
-    public void dfs(String startVertex) {
+    public void dfs(String startVertex, boolean highToLow) {
         Stack<String> stack = new Stack<>();
         Set<String> visited = new HashSet<>();
+        List<String> result = new ArrayList<>();
 
         stack.push(startVertex);
 
-        System.out.println("DFS Traversal:");
+        System.out.println("DFS Traversal (using Stack):");
         while (!stack.isEmpty()) {
+            System.out.println("Stack: " + stack);
             String current = stack.pop();
 
             if (!visited.contains(current)) {
-                System.out.print(current + " ");
+                result.add(current);
                 visited.add(current);
 
-                for (String neighbor : adjacencyList.getOrDefault(current, new ArrayList<>())) {
+                List<String> neighbors = new ArrayList<>(adjacencyList.getOrDefault(current, new ArrayList<>()));
+                neighbors.sort(highToLow ? Comparator.reverseOrder() : Comparator.naturalOrder());
+
+                for (int i = neighbors.size() - 1; i >= 0; i--) {
+                    String neighbor = neighbors.get(i);
                     if (!visited.contains(neighbor)) {
                         stack.push(neighbor);
                     }
                 }
             }
         }
-        System.out.println();
+
+        System.out.println("Final DFS Traversal: " + String.join(" ", result));
     }
 
     // Main method
@@ -73,71 +86,61 @@ public class GraphTraversal {
 
         System.out.println("Graph Traversal Program");
 
-        // Input number of nodes
-        System.out.print("Enter the number of nodes: ");
-        int numberOfNodes = Integer.parseInt(scanner.nextLine().trim());
-
-        // Input nodes
+        // Nodes
         System.out.println("Enter all nodes separated by space:");
         String[] nodes = scanner.nextLine().trim().split("\\s+");
         for (String node : nodes) {
-            if (!node.isEmpty()) {
-                graph.addVertex(node);
-            }
+            graph.addVertex(node);
         }
 
-        // Input number of edges
+        // Edges
         System.out.print("Enter the number of edges: ");
         int numberOfEdges = Integer.parseInt(scanner.nextLine().trim());
 
-        // Input edges
         System.out.println("Enter edges ('node1-node2'):");
         for (int i = 0; i < numberOfEdges; i++) {
             System.out.print("Edge " + (i + 1) + ": ");
             String input = scanner.nextLine().trim();
-
-            String[] nodesInEdge = input.split("-");
-            if (nodesInEdge.length == 2 &&
-                graph.adjacencyList.containsKey(nodesInEdge[0]) &&
-                graph.adjacencyList.containsKey(nodesInEdge[1])) {
-                graph.addEdge(nodesInEdge[0], nodesInEdge[1]);
+            String[] edgeNodes = input.split("-");
+            if (edgeNodes.length == 2 &&
+                graph.adjacencyList.containsKey(edgeNodes[0]) &&
+                graph.adjacencyList.containsKey(edgeNodes[1])) {
+                graph.addEdge(edgeNodes[0], edgeNodes[1]);
             } else {
-                System.out.println("Invalid edge or nodes not found. Skipping edge: " + input);
-                i--; // Decrement to repeat this iteration
+                System.out.println("Invalid edge or nodes not found. Try again.");
+                i--;
             }
         }
 
-        // Choose traversal method
+        // Traversal type
         System.out.print("Choose traversal method (BFS/DFS): ");
         String method = scanner.nextLine().trim().toUpperCase();
 
-        // Ask user whether to start from highest or lowest value
-        System.out.print("Do you want to start from the highest or lowest value? (H/L): ");
-        String startChoice = scanner.nextLine().trim().toUpperCase();
-
-        // Determine starting node based on user choice
-        String startNode;
-        if (startChoice.equals("H")) {
-            startNode = Collections.max(graph.adjacencyList.keySet());
-        } else if (startChoice.equals("L")) {
-            startNode = Collections.min(graph.adjacencyList.keySet());
-        } else {
-            System.out.println("Invalid choice. Please choose H for highest or L for lowest.");
+        // Starting node
+        System.out.print("Enter the starting node: ");
+        String startNode = scanner.nextLine().trim();
+        if (!graph.adjacencyList.containsKey(startNode)) {
+            System.out.println("Invalid starting node.");
             return;
         }
 
-        // Perform the chosen traversal
+        // High/Low preference
+        System.out.print("Visit neighbors in (H)ighest or (L)owest order? ");
+        String order = scanner.nextLine().trim().toUpperCase();
+        boolean highToLow = order.equals("H");
+
+        // Execute traversal
         switch (method) {
             case "BFS":
-                graph.bfs(startNode);
+                graph.bfs(startNode, highToLow);
                 break;
             case "DFS":
-                graph.dfs(startNode);
+                graph.dfs(startNode, highToLow);
                 break;
             default:
-                System.out.println("Invalid method. Please choose BFS or DFS.");
+                System.out.println("Invalid traversal method.");
         }
 
         scanner.close();
     }
-    }
+}
