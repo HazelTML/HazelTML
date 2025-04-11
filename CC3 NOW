@@ -1,0 +1,105 @@
+// Base class: Human
+abstract class Human {
+    // Attributes
+    private String name;
+    private int age;
+
+    // Constructor
+    public Human(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Getter and Setter methods for encapsulation
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    // Abstract method
+    public abstract void talk(String sentence);
+}
+
+// Derived class: Student
+class Student extends Human {
+    // Attribute
+    private String studentID;
+
+    // Constructor
+    public Student(String name, int age, String studentID) {
+        super(name, age); // Calling the superclass constructor
+        this.studentID = studentID;
+    }
+
+    // Getter and Setter methods
+    public String getStudentID() {
+        return studentID;
+    }
+
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+
+    // Implementation of abstract method
+    @Override
+    public void talk(String sentence) {
+        System.out.println("Student says: " + sentence);
+    }
+}
+
+// Derived class: Instructor
+class Instructor extends Human {
+    // Attribute
+    private String facultyID;
+
+    // Constructor
+    public Instructor(String name, int age, String facultyID) {
+        super(name, age); // Calling the superclass constructor
+        this.facultyID = facultyID;
+    }
+
+    // Getter and Setter methods
+    public String getFacultyID() {
+        return facultyID;
+    }
+
+    public void setFacultyID(String facultyID) {
+        this.facultyID = facultyID;
+    }
+
+    // Implementation of abstract method
+    @Override
+    public void talk(String sentence) {
+        System.out.println("Instructor says: " + sentence);
+    }
+
+    // Additional method
+    public void teach(String topic) {
+        System.out.println("Teaching: " + topic);
+    }
+}
+
+// Main class to test the implementation
+public class Main {
+    public static void main(String[] args) {
+        // Create a Student object
+        Student student = new Student("Alice", 20, "S12345");
+        student.talk("I love learning new things!");
+
+        // Create an Instructor object
+        Instructor instructor = new Instructor("Dr. Smith", 45, "F98765");
+        instructor.talk("Welcome to the class!");
+        instructor.teach("Object-Oriented Programming");
+    }
+}
